@@ -13,7 +13,13 @@ void main() {
     padding: const EdgeInsets.all(20),
   );
 
-  runApp(const MyApp());
+  runApp(
+    MaterialApp(
+      home: const MyApp(),
+      darkTheme: ThemeData.dark(),
+      themeMode: ThemeMode.dark,
+    ),
+  );
 }
 
 /// A mock app to demonstrate how to use the XContainers.
@@ -37,23 +43,28 @@ class MyApp extends StatelessWidget {
       body: ListView(
         children: [
 
+          // SHADOW CONTAINER --------------------------------------------------
           const ShadowContainer(
-            margin: EdgeInsets.all(50),
+            margin: EdgeInsets.all(20),
             child: Text("This is a [ShadowContainer]"),
           ),
 
+          // INK CONTAINER -----------------------------------------------------
           InkContainer(
-            height: 50,
+            height: 100,
             margin: const EdgeInsets.all(20),
             onTap: () => customDialog(context, "I have been tapped on!"),
             child: const Text("Tap me!"),
           ),
 
+          // CUSTOM CARD -------------------------------------------------------
           CustomCard(
             title: const Text("A card"),
             subtitle: const Text("It works like a ListTile within a Card, but the trailing and leading widgets are leveled and the density can be modified."),
-            leading: const Icon(Icons.sentiment_satisfied),
-            trailing: const Icon(Icons.sentiment_satisfied),
+            leading: const Icon(Icons.sentiment_very_satisfied, size: 40,),
+            trailing: const Icon(Icons.sentiment_very_satisfied, size: 40,),
+            margin: const EdgeInsets.all(20),
+            density: 20,
             onTap: () => customDialog(context, "You can also tap on me :)"),
           )
         ],
@@ -67,7 +78,8 @@ class MyApp extends StatelessWidget {
   void customDialog (BuildContext context, String message) => showDialog(
     context: context,
     builder: (context) => AlertDialog(
-      title: Text(message),
+      title: const Text("Hey"),
+      content: Text(message),
     ),
   );
 }
