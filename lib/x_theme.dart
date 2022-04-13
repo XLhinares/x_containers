@@ -78,4 +78,42 @@ class XTheme {
   /// The actual constructor of the class.
   XTheme._internal();
 
+
+  // METHODS ===================================================================
+
+  /// Set several properties at once.
+  ///
+  /// WARNING: arguments not set or set to null won't change the value of the properties.
+  /// To set a property to null, modify it directly as follows:
+  /// ```dart
+  ///   XTheme().shadowColor = null;
+  /// ```
+  void set ({
+    double? paddingValue,
+    EdgeInsetsGeometry? padding,
+    EdgeInsetsGeometry? margin,
+    BorderRadius? borderRadius,
+    BoxBorder? borderDecoration,
+    AlignmentGeometry? alignment,
+    bool? enableShadow,
+    Color? shadowColor,
+    Color? primaryColor,
+    Color? cardColor,
+    Color? splashColor,
+    bool? enableSplash,
+  }) {
+    if (paddingValue != null) this.paddingValue = paddingValue;
+    if (padding != null) this.padding = padding;
+    if (margin != null) this.margin = margin;
+    if (borderRadius != null) this.borderRadius = borderRadius;
+    if (borderDecoration != null) this.borderDecoration = borderDecoration;
+    if (alignment != null) this.alignment = alignment;
+    if (enableShadow != null) this.enableShadow = enableShadow;
+    if (shadowColor != null) this.shadowColor = shadowColor;
+    if (primaryColor != null) this.primaryColor = primaryColor;
+    if (cardColor != null) this.cardColor = cardColor;
+    if (splashColor != null) this.splashColor = splashColor;
+    if (enableSplash != null) this.enableSplash = enableSplash;
+  }
+
 }
