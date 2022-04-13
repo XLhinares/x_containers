@@ -8,7 +8,7 @@ import "package:flutter/material.dart";
 /// colors are used.
 ///
 /// The individual settings of each instance still may be customized.
-class XSettings {
+class XTheme {
 
   // VARIABLES =================================================================
 
@@ -70,12 +70,12 @@ class XSettings {
   /// The value of the singleton.
   ///
   /// It is both static and final meaning it can only be instantiated once.
-  static final XSettings _instance = XSettings._internal();
+  static final XTheme _instance = XTheme._internal();
 
   /// Returns the unique instance of the class.
-  factory XSettings() => _instance;
+  factory XTheme() => _instance;
 
   /// The actual constructor of the class.
-  XSettings._internal();
+  XTheme._internal();
 
 }

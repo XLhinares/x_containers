@@ -5,6 +5,14 @@ import "package:flutter/material.dart";
 import "package:x_containers/x_containers.dart";
 
 /// A tap-able custom container with ink properties.
+///
+/// It has the same properties as a regular container with the exception the some
+/// decorations can be set directly without using a [BoxDecoration].
+/// Obviously, these decorations will be overriden if the property [decoration]
+/// is provided.
+///
+/// On top of the container, a ink behavior is implemented to allow tapping with
+/// splash animations.
 class InkContainer extends StatelessWidget {
 
   // VARIABLES =================================================================
@@ -13,59 +21,59 @@ class InkContainer extends StatelessWidget {
 
   /// The main color of the box.
   ///
-  /// Defaults to [xSettings.primaryColor]
+  /// Defaults to [xTheme.primaryColor]
   final Color? color;
-  Color? get _primaryColor => color ?? xSettings.primaryColor;
+  Color? get _primaryColor => color ?? xTheme.primaryColor;
 
   /// An optional gradient to color the box.
   ///
-  /// If it is not null, the it overrides the color.
+  /// If it is not null, then it overrides the color.
   final Gradient? gradient;
   Gradient? get _gradient => gradient;
 
   /// The color of the shadow of the box.
   ///
-  /// Defaults to [xSettings.shadowColor].
+  /// Defaults to [xTheme.shadowColor].
   final Color? shadowColor;
-  Color? get _shadowColor => shadowColor ?? xSettings.shadowColor;
+  Color? get _shadowColor => shadowColor ?? xTheme.shadowColor;
 
   /// Whether the box should have a shadow.
   ///
-  /// Defaults to [xSettings.enableShadow].
+  /// Defaults to [xTheme.enableShadow].
   final bool? enableShadow;
-  bool get _enableShadow => enableShadow ?? xSettings.enableShadow;
+  bool get _enableShadow => enableShadow ?? xTheme.enableShadow;
 
   // LAYOUT --------------------------------------------------------------------
 
   /// An optional alignment setting.
   ///
-  /// Defaults to [xSettings.alignment].
+  /// Defaults to [xTheme.alignment].
   final AlignmentGeometry? alignment;
-  AlignmentGeometry? get _alignment => alignment ?? xSettings.alignment;
+  AlignmentGeometry? get _alignment => alignment ?? xTheme.alignment;
 
   /// An optional padding setting.
   ///
-  /// Defaults to [xSettings.padding].
+  /// Defaults to [xTheme.padding].
   final EdgeInsetsGeometry? padding;
-  EdgeInsetsGeometry get _padding => padding ?? xSettings.padding;
+  EdgeInsetsGeometry get _padding => padding ?? xTheme.padding;
 
   /// An optional margin setting.
   ///
-  /// Defaults to [xSettings.margin].
+  /// Defaults to [xTheme.margin].
   final EdgeInsetsGeometry? margin;
-  EdgeInsetsGeometry get _margin => margin ?? xSettings.margin;
+  EdgeInsetsGeometry get _margin => margin ?? xTheme.margin;
 
   /// An optional BorderRadius setting.
   ///
-  /// Defaults to [xSettings.borderRadius].
+  /// Defaults to [xTheme.borderRadius].
   final BorderRadius? borderRadius;
-  BorderRadius get _borderRadius => borderRadius ?? xSettings.borderRadius;
+  BorderRadius get _borderRadius => borderRadius ?? xTheme.borderRadius;
 
   /// An optional BorderDecoration setting.
   ///
-  /// Defaults to [xSettings.borderDecoration].
+  /// Defaults to [xTheme.borderDecoration].
   final BoxBorder? borderDecoration;
-  BoxBorder? get _borderDecoration => borderDecoration ?? xSettings.borderDecoration;
+  BoxBorder? get _borderDecoration => borderDecoration ?? xTheme.borderDecoration;
 
   /// An optional BoxConstraints setting.
   ///
@@ -92,15 +100,15 @@ class InkContainer extends StatelessWidget {
 
   /// A splash color to paint when the container is tapped.
   ///
-  /// Defaults to [xSettings.splashColor].
+  /// Defaults to [xTheme.splashColor].
   final Color? splashColor;
-  Color? get _splashColor => splashColor ?? xSettings.splashColor;
+  Color? get _splashColor => splashColor ?? xTheme.splashColor;
 
   /// Whether the container should "splash" when tapped on.
   ///
-  /// Defaults to [xSettings.enableSplash].
+  /// Defaults to [xTheme.enableSplash].
   final bool? enableSplash;
-  bool get _enableSplash => enableSplash ?? xSettings.enableSplash;
+  bool get _enableSplash => enableSplash ?? xTheme.enableSplash;
 
 
   // CONSTRUCTOR ===============================================================

@@ -27,18 +27,18 @@ class CustomCard extends StatelessWidget {
 
   /// The color of the card.
   ///
-  /// Defaults to [xSettings.cardColor] or the theme card color if needed.
+  /// Defaults to [xTheme.cardColor] or the theme card color if needed.
   final Color? color;
   Color? get _color => color
-      ?? xSettings.cardColor;
+      ?? xTheme.cardColor;
 
   // LAYOUT --------------------------------------------------------------------
 
   /// An optional BorderRadius setting.
   ///
-  /// Defaults to [xSettings.borderRadius].
+  /// Defaults to [xTheme.borderRadius].
   final BorderRadius? borderRadius;
-  BorderRadius get _borderRadius => borderRadius ?? xSettings.borderRadius;
+  BorderRadius get _borderRadius => borderRadius ?? xTheme.borderRadius;
 
   /// An optional padding setting.
   ///
@@ -55,13 +55,13 @@ class CustomCard extends StatelessWidget {
   /// The default margin is computed from the density value.
   final EdgeInsetsGeometry? margin;
   EdgeInsetsGeometry get _margin => margin
-      ?? EdgeInsets.all(xSettings.paddingValue);
+      ?? EdgeInsets.all(xTheme.paddingValue);
 
   /// A double managing the padding of the card.
   ///
   /// It has an impact on how close the children fit within the card.
   final double? density;
-  double get _density => density ?? xSettings.paddingValue;
+  double get _density => density ?? xTheme.paddingValue;
 
   /// The ratio of horizontal density over vertical density.
   ///
