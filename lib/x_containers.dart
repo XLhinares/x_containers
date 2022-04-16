@@ -1,5 +1,5 @@
 library x_container;
-import "package:x_containers/x_theme.dart";
+import "package:x_containers/settings/x_theme.dart";
 
 export "widgets/shadow_container.dart";
 export "widgets/ink_container.dart";
