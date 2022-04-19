@@ -58,7 +58,7 @@ class MyApp extends StatelessWidget {
           ),
 
           // CUSTOM CARD -------------------------------------------------------
-          CustomCard(
+          XCard(
             title: const Text("A card"),
             subtitle: const Text("It works like a ListTile within a Card, but the trailing and leading widgets are leveled and the density can be modified."),
             leading: const Icon(Icons.sentiment_very_satisfied, size: 40,),

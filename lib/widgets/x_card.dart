@@ -5,7 +5,7 @@ import "package:flutter/material.dart";
 import "package:x_containers/x_containers.dart";
 
 /// A custom [Card]-like widget to standardize the tiles within the app.
-class CustomCard extends StatelessWidget {
+class XCard extends StatelessWidget {
 
   // VARIABLES =================================================================
 
@@ -14,8 +14,8 @@ class CustomCard extends StatelessWidget {
   /// An (optional) widget to be displayed on the left of the card.
   final Widget? leading;
 
-  /// The (optional) title of the card.
-  final Widget? title;
+  /// The title of the card.
+  final Widget title;
 
   /// The (optional) subtitle of the card.
   final Widget? subtitle;
@@ -31,6 +31,14 @@ class CustomCard extends StatelessWidget {
   final Color? color;
   Color? get _color => color
       ?? xTheme.cardColor;
+
+
+  /// Whether the card should cast a shadow.
+  ///
+  /// Defaults to [xTheme.enableShadow].
+  final bool? enableShadow;
+  bool get _enableShadow => enableShadow
+      ?? xTheme.enableShadow;
 
   // LAYOUT --------------------------------------------------------------------
 
@@ -79,14 +87,15 @@ class CustomCard extends StatelessWidget {
 
   // CONSTRUCTOR ===============================================================
 
-  /// Returns an instance of [CustomCard] matching the given parameters.
-  const CustomCard({
+  /// Returns an instance of [XCard] matching the given parameters.
+  const XCard({
     Key? key,
     this.leading,
-    this.title,
+    required this.title,
     this.subtitle,
     this.trailing,
     this.color,
+    this.enableShadow,
     this.borderRadius,
     this.margin,
     this.padding,
@@ -106,15 +115,33 @@ class CustomCard extends StatelessWidget {
       borderRadius: _borderRadius,
       onTap: onTap,
       color: _color ?? Theme.of(context).cardColor,
+      enableShadow: _enableShadow,
       child: Row(
         children: [
           leading ?? const SizedBox(),
           SizedBox(width: leading == null ? 0 : _density,),
           Expanded(
-            child: ListTile(
-              contentPadding: EdgeInsets.zero,
-              title: title,
-              subtitle: subtitle,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                DefaultTextStyle(
+                  textAlign: TextAlign.start,
+                  style: Theme.of(context).textTheme.bodyMedium ?? TextStyle(),
+                  child: title,
+                ),
+                Visibility(
+                  visible: subtitle != null,
+                  child: SizedBox(height: _density,),
+                ),
+                Visibility(
+                  visible: subtitle != null,
+                  child: DefaultTextStyle(
+                    style: Theme.of(context).textTheme.bodySmall ?? TextStyle(),
+                    child: subtitle ?? const SizedBox(),
+                  ),
+                ),
+              ],
             ),
           ),
           SizedBox(width: trailing == null ? 0 : _density,),
