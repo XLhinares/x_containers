@@ -13,19 +13,6 @@ double xPaddingL = 50;
 /// A static class to store the main possible shapes.
 class XLayout {
 
-  // CONSTRUCTOR ===============================================================
-
-  /// The value of the singleton.
-  ///
-  /// It is both static and final meaning it can only be instantiated once.
-  static final XLayout _instance = XLayout._internal();
-
-  /// Returns the unique instance of the class.
-  factory XLayout() => _instance;
-
-  /// The actual constructor of the class.
-  XLayout._internal();
-
   // BORDER RADIUS =============================================================
 
   /// Extra-small circular border radius
