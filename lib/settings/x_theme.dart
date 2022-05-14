@@ -12,8 +12,6 @@ class XTheme {
 
   // VARIABLES =================================================================
 
-  // PADDING ===================================================================
-
   // PADDING -------------------------------------------------------------------
 
   /// The default value of the padding used.
@@ -73,9 +71,6 @@ class XTheme {
   /// Whether the container should "splash" when tapped on.
    bool enableSplash = true;
 
-  // GETTERS ===================================================================
-
-
   // CONSTRUCTOR ===============================================================
 
   /// The value of the singleton.
@@ -88,7 +83,6 @@ class XTheme {
 
   /// The actual constructor of the class.
   XTheme._internal();
-
 
   // METHODS ===================================================================
 

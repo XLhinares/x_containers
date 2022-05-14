@@ -1,8 +1,12 @@
+## 0.1.0
+
+- Changed: Versioning now use the first number for major versions, the second for minor and the third for fixes.
+
 ## 0.0.3
 
 - Added: XDialog.
 - Added: XSnackbar. 
-- Improved: some XTheme values and added support for XDialog and XSnackbar.
+- Improved: Some XTheme values and added support for XDialog and XSnackbar.
 - Improved: Example to include XDialog and XSnackbar.
 - Changed: [xPadding] variables have become static members of [XLayout].
 

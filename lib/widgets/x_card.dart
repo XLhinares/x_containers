@@ -83,9 +83,6 @@ class XCard extends StatelessWidget {
   /// An (optional) functional specifying the behavior of the card when tapped.
   final void Function()? onTap;
 
-  // GETTERS ===================================================================
-
-
   // CONSTRUCTOR ===============================================================
 
   /// Returns an instance of [XCard] matching the given parameters.
@@ -161,7 +158,4 @@ class XCard extends StatelessWidget {
       ),
     );
   }
-
-// METHODS ===================================================================
-
 }
