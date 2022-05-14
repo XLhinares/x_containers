@@ -55,7 +55,7 @@ class XCard extends StatelessWidget {
   EdgeInsetsGeometry get _padding => padding
       ?? EdgeInsets.symmetric(
         horizontal: _density,
-        vertical: _density/densityRatio,
+        vertical: _density/_densityRatio,
       );
 
   /// An optional margin setting.
@@ -63,7 +63,7 @@ class XCard extends StatelessWidget {
   /// The default margin is computed from the density value.
   final EdgeInsetsGeometry? margin;
   EdgeInsetsGeometry get _margin => margin
-      ?? EdgeInsets.all(xTheme.paddingValue);
+      ?? xTheme.margin;
 
   /// A double managing the padding of the card.
   ///
@@ -73,9 +73,10 @@ class XCard extends StatelessWidget {
 
   /// The ratio of horizontal density over vertical density.
   ///
-  /// Default value: 4.
-  /// Increasing it will increase the vertical padding.
-  final double densityRatio;
+  /// Increasing it will decrease the vertical padding if there is some.
+  /// Defaults to [xTheme.densityRatio].
+  final double? densityRatio;
+  double get _densityRatio => densityRatio ?? xTheme.densityRatio;
 
   // INTERACTIVITY -------------------------------------------------------------
 
@@ -100,7 +101,7 @@ class XCard extends StatelessWidget {
     this.margin,
     this.padding,
     this.density,
-    this.densityRatio = 4,
+    this.densityRatio,
     this.onTap,
   }) : super(key: key);
 
@@ -118,8 +119,14 @@ class XCard extends StatelessWidget {
       enableShadow: _enableShadow,
       child: Row(
         children: [
+
+          // LEADING -----------------------------------------------------------
           leading ?? const SizedBox(),
-          SizedBox(width: leading == null ? 0 : _density,),
+
+          // SPACING -----------------------------------------------------------
+          SizedBox(width: leading == null ? 0 : _density),
+
+          // MAIN BOX ----------------------------------------------------------
           Expanded(
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -127,24 +134,28 @@ class XCard extends StatelessWidget {
               children: [
                 DefaultTextStyle(
                   textAlign: TextAlign.start,
-                  style: Theme.of(context).textTheme.bodyMedium ?? TextStyle(),
+                  style: Theme.of(context).textTheme.bodyMedium ?? const TextStyle(),
                   child: title,
                 ),
                 Visibility(
                   visible: subtitle != null,
-                  child: SizedBox(height: _density,),
+                  child: SizedBox(height: _density / _densityRatio),
                 ),
                 Visibility(
                   visible: subtitle != null,
                   child: DefaultTextStyle(
-                    style: Theme.of(context).textTheme.bodySmall ?? TextStyle(),
+                    style: Theme.of(context).textTheme.bodySmall ?? const TextStyle(),
                     child: subtitle ?? const SizedBox(),
                   ),
                 ),
               ],
             ),
           ),
-          SizedBox(width: trailing == null ? 0 : _density,),
+
+          // SPACING -----------------------------------------------------------
+          SizedBox(width: trailing == null ? 0 : _density),
+
+          // TRAILING ----------------------------------------------------------
           trailing ?? const SizedBox(),
         ],
       ),

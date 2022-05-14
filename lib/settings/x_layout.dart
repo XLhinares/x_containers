@@ -1,29 +1,35 @@
 // Flutter dependencies
 import "package:flutter/material.dart";
 
-/// Extra-small padding value.
-double xPaddingXS = 5;
-/// Small padding value.
-double xPaddingS = 10;
-/// Medium padding value.
-double xPaddingM = 25;
-/// Large padding value.
-double xPaddingL = 50;
-
 /// A static class to store the main possible shapes.
 class XLayout {
 
+  // PADDING ===================================================================
+
+  /// Extra-small padding value.
+  static double paddingXS = 5;
+
+  /// Small padding value.
+  static double paddingS = 10;
+
+  /// Medium padding value.
+  static double paddingM = 20;
+
+  /// Large padding value.
+  static double paddingL = 40;
+
+
   // BORDER RADIUS =============================================================
 
-  /// Extra-small circular border radius
-  static BorderRadius get brcXS => BorderRadius.circular(xPaddingXS);
-  /// Small circular border radius
-  static BorderRadius get brcS => BorderRadius.circular(xPaddingS);
-  /// Medium circular border radius
-  static BorderRadius get brcM => BorderRadius.circular(xPaddingM);
-  /// Large circular border radius
-  static BorderRadius get brcL => BorderRadius.circular(xPaddingL);
-  /// Circular border radius
+  /// Extra-small circular border radius.
+  static BorderRadius get brcXS => BorderRadius.circular(paddingXS);
+  /// Small circular border radius.
+  static BorderRadius get brcS => BorderRadius.circular(paddingS);
+  /// Medium circular border radius.
+  static BorderRadius get brcM => BorderRadius.circular(paddingM);
+  /// Large circular border radius.
+  static BorderRadius get brcL => BorderRadius.circular(paddingL);
+  /// Circular border radius.
   static BorderRadius get brcX => BorderRadius.circular(1000);
 
   // SIZED BOXES ===============================================================
@@ -31,23 +37,23 @@ class XLayout {
   // Horizontal ----------------------------------------------------------------
 
   /// Extra-small horizontal [SizedBox].
-  static SizedBox get horizontalXS => SizedBox(width: xPaddingXS);
+  static SizedBox get horizontalXS => SizedBox(width: paddingXS);
   /// Small horizontal [SizedBox].
-  static SizedBox get horizontalS => SizedBox(width: xPaddingS);
+  static SizedBox get horizontalS => SizedBox(width: paddingS);
   /// Medium horizontal [SizedBox].
-  static SizedBox get horizontalM => SizedBox(width: xPaddingM);
+  static SizedBox get horizontalM => SizedBox(width: paddingM);
   /// Large horizontal [SizedBox].
-  static SizedBox get horizontalL => SizedBox(width: xPaddingL);
+  static SizedBox get horizontalL => SizedBox(width: paddingL);
 
   // Vertical ------------------------------------------------------------------
 
   /// Extra-small vertical [SizedBox].
-  static SizedBox get verticalXS => SizedBox(height: xPaddingXS);
+  static SizedBox get verticalXS => SizedBox(height: paddingXS);
   /// Small vertical [SizedBox].
-  static SizedBox get verticalS => SizedBox(height: xPaddingS);
+  static SizedBox get verticalS => SizedBox(height: paddingS);
   /// Medium vertical [SizedBox].
-  static SizedBox get verticalM => SizedBox(height: xPaddingM);
+  static SizedBox get verticalM => SizedBox(height: paddingM);
   /// Large vertical [SizedBox].
-  static SizedBox get verticalL => SizedBox(height: xPaddingL);
+  static SizedBox get verticalL => SizedBox(height: paddingL);
 
 }

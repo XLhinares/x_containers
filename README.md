@@ -29,6 +29,8 @@ This package gives you access to the following XContainers:
 - `ShadowContainer`: A container-type widget with a shadow and some more customization than a regular container.
 - `InkContainer`: A container-type widget with a shadow embedding a GestureDetector with a splash animation.
 - `XCard`: A card-type widget meant to replace ListTiles inside Cards, it also fixes the issue of ListTile's leading and trailing properties not being leveled.
+- `XDialog`: A custom dialog object that can be displayed with its `show` method.
+- `XSnackbar`: A custom dialog object that can be displayed with its `show` method.
 
 You will also find a `xSetting` object, it allows you to customize the default properties of all the XContainers.
 Note that if you don't set default colors, the Theme colors will be applied.
