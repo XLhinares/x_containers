@@ -44,28 +44,31 @@ class MyApp extends StatelessWidget {
         children: [
 
           // SHADOW CONTAINER --------------------------------------------------
-          const ShadowContainer(
-            margin: EdgeInsets.all(20),
-            child: Text("This is a [ShadowContainer]"),
+          ShadowContainer(
+            margin: EdgeInsets.all(XLayout.paddingM),
+            child: const Text("This is a [ShadowContainer]"),
           ),
+
+          // Vertical gap
+          XLayout.verticalS,
 
           // INK CONTAINER -----------------------------------------------------
           InkContainer(
             height: 100,
-            margin: const EdgeInsets.all(20),
-            onTap: () => customDialog(context, "I have been tapped on!"),
+            margin: EdgeInsets.all(XLayout.paddingM),
+            onTap: () => XDialog.text(title: "I have been tapped on!").show(context),
             child: const Text("Tap me!"),
           ),
 
           // CUSTOM CARD -------------------------------------------------------
-          CustomCard(
+          XCard(
             title: const Text("A card"),
             subtitle: const Text("It works like a ListTile within a Card, but the trailing and leading widgets are leveled and the density can be modified."),
             leading: const Icon(Icons.sentiment_very_satisfied, size: 40,),
             trailing: const Icon(Icons.sentiment_very_satisfied, size: 40,),
             margin: const EdgeInsets.all(20),
             density: 20,
-            onTap: () => customDialog(context, "You can also tap on me :)"),
+            onTap: () => XSnackbar.text(title: "You can also tap on me :)").show(),
           )
         ],
       ),
@@ -74,12 +77,4 @@ class MyApp extends StatelessWidget {
 
   // METHODS ===================================================================
 
-  /// Displays a customized [AlertDialog].
-  void customDialog (BuildContext context, String message) => showDialog(
-    context: context,
-    builder: (context) => AlertDialog(
-      title: const Text("Hey"),
-      content: Text(message),
-    ),
-  );
 }

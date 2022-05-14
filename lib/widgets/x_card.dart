@@ -5,7 +5,7 @@ import "package:flutter/material.dart";
 import "package:x_containers/x_containers.dart";
 
 /// A custom [Card]-like widget to standardize the tiles within the app.
-class CustomCard extends StatelessWidget {
+class XCard extends StatelessWidget {
 
   // VARIABLES =================================================================
 
@@ -14,8 +14,8 @@ class CustomCard extends StatelessWidget {
   /// An (optional) widget to be displayed on the left of the card.
   final Widget? leading;
 
-  /// The (optional) title of the card.
-  final Widget? title;
+  /// The title of the card.
+  final Widget title;
 
   /// The (optional) subtitle of the card.
   final Widget? subtitle;
@@ -32,6 +32,14 @@ class CustomCard extends StatelessWidget {
   Color? get _color => color
       ?? xTheme.cardColor;
 
+
+  /// Whether the card should cast a shadow.
+  ///
+  /// Defaults to [xTheme.enableShadow].
+  final bool? enableShadow;
+  bool get _enableShadow => enableShadow
+      ?? xTheme.enableShadow;
+
   // LAYOUT --------------------------------------------------------------------
 
   /// An optional BorderRadius setting.
@@ -47,7 +55,7 @@ class CustomCard extends StatelessWidget {
   EdgeInsetsGeometry get _padding => padding
       ?? EdgeInsets.symmetric(
         horizontal: _density,
-        vertical: _density/densityRatio,
+        vertical: _density/_densityRatio,
       );
 
   /// An optional margin setting.
@@ -55,7 +63,7 @@ class CustomCard extends StatelessWidget {
   /// The default margin is computed from the density value.
   final EdgeInsetsGeometry? margin;
   EdgeInsetsGeometry get _margin => margin
-      ?? EdgeInsets.all(xTheme.paddingValue);
+      ?? xTheme.margin;
 
   /// A double managing the padding of the card.
   ///
@@ -65,9 +73,10 @@ class CustomCard extends StatelessWidget {
 
   /// The ratio of horizontal density over vertical density.
   ///
-  /// Default value: 4.
-  /// Increasing it will increase the vertical padding.
-  final double densityRatio;
+  /// Increasing it will decrease the vertical padding if there is some.
+  /// Defaults to [xTheme.densityRatio].
+  final double? densityRatio;
+  double get _densityRatio => densityRatio ?? xTheme.densityRatio;
 
   // INTERACTIVITY -------------------------------------------------------------
 
@@ -79,19 +88,20 @@ class CustomCard extends StatelessWidget {
 
   // CONSTRUCTOR ===============================================================
 
-  /// Returns an instance of [CustomCard] matching the given parameters.
-  const CustomCard({
+  /// Returns an instance of [XCard] matching the given parameters.
+  const XCard({
     Key? key,
     this.leading,
-    this.title,
+    required this.title,
     this.subtitle,
     this.trailing,
     this.color,
+    this.enableShadow,
     this.borderRadius,
     this.margin,
     this.padding,
     this.density,
-    this.densityRatio = 4,
+    this.densityRatio,
     this.onTap,
   }) : super(key: key);
 
@@ -106,18 +116,46 @@ class CustomCard extends StatelessWidget {
       borderRadius: _borderRadius,
       onTap: onTap,
       color: _color ?? Theme.of(context).cardColor,
+      enableShadow: _enableShadow,
       child: Row(
         children: [
+
+          // LEADING -----------------------------------------------------------
           leading ?? const SizedBox(),
-          SizedBox(width: leading == null ? 0 : _density,),
+
+          // SPACING -----------------------------------------------------------
+          SizedBox(width: leading == null ? 0 : _density),
+
+          // MAIN BOX ----------------------------------------------------------
           Expanded(
-            child: ListTile(
-              contentPadding: EdgeInsets.zero,
-              title: title,
-              subtitle: subtitle,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                DefaultTextStyle(
+                  textAlign: TextAlign.start,
+                  style: Theme.of(context).textTheme.bodyMedium ?? const TextStyle(),
+                  child: title,
+                ),
+                Visibility(
+                  visible: subtitle != null,
+                  child: SizedBox(height: _density / _densityRatio),
+                ),
+                Visibility(
+                  visible: subtitle != null,
+                  child: DefaultTextStyle(
+                    style: Theme.of(context).textTheme.bodySmall ?? const TextStyle(),
+                    child: subtitle ?? const SizedBox(),
+                  ),
+                ),
+              ],
             ),
           ),
-          SizedBox(width: trailing == null ? 0 : _density,),
+
+          // SPACING -----------------------------------------------------------
+          SizedBox(width: trailing == null ? 0 : _density),
+
+          // TRAILING ----------------------------------------------------------
           trailing ?? const SizedBox(),
         ],
       ),

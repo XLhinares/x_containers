@@ -12,55 +12,66 @@ class XTheme {
 
   // VARIABLES =================================================================
 
+  // PADDING ===================================================================
+
   // PADDING -------------------------------------------------------------------
 
   /// The default value of the padding used.
-  double paddingValue = 10;
+   double paddingValue = 10;
+
+  /// The ratio of horizontal density over vertical density.
+  ///
+  /// Default value: 4.
+  /// Increasing it will increase the vertical padding.
+   double densityRatio = 2;
 
   /// The default padding value for all XContainers.
   ///
   /// It indicates an offset between the contents of a container and its border.
-  EdgeInsetsGeometry padding = EdgeInsets.zero;
+   EdgeInsetsGeometry padding = EdgeInsets.zero;
 
   /// The default margin value for all XContainers.
   ///
   /// It indicates an offset between the border of a container and its
   /// surroundings.
-  EdgeInsetsGeometry margin = EdgeInsets.zero;
+   EdgeInsetsGeometry margin = EdgeInsets.zero;
 
   // SHAPE ---------------------------------------------------------------------
 
   /// The default border radius property for all XContainers.
-  BorderRadius borderRadius = BorderRadius.circular(5);
+   BorderRadius borderRadius = BorderRadius.circular(5);
+
+  /// The default border radius property for all XContainers.
+   BorderRadius dialogBorderRadius = BorderRadius.circular(10);
 
   /// The default border decoration for all XContainers.
-  BoxBorder? borderDecoration;
+   BoxBorder? borderDecoration;
   // POSITIONING ---------------------------------------------------------------
 
   /// The default alignment setting of the XContainers.
-  AlignmentGeometry alignment = Alignment.center;
+   AlignmentGeometry alignment = Alignment.center;
 
   // COLORS --------------------------------------------------------------------
 
   /// Whether the shadows should be enabled by default.
-  bool enableShadow = true;
+   bool enableShadow = true;
 
   /// The default primary color of the XContainers.
-  Color? primaryColor;
+   Color? primaryColor;
 
   /// The default primary color of the card-type XContainers.
-  Color? cardColor;
+   Color? cardColor;
 
   /// The default shadow color of the XContainers.
-  Color? shadowColor = Colors.black;
+   Color? shadowColor = Colors.black;
 
   /// The default splash color of the XContainers.
-  Color? splashColor;
+   Color? splashColor;
 
   // INTERACTIVITY -------------------------------------------------------------
 
   /// Whether the container should "splash" when tapped on.
-  bool enableSplash = true;
+   bool enableSplash = true;
 
   // GETTERS ===================================================================
 
