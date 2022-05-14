@@ -110,7 +110,6 @@ class InkContainer extends StatelessWidget {
   final bool? enableSplash;
   bool get _enableSplash => enableSplash ?? xTheme.enableSplash;
 
-
   // CONSTRUCTOR ===============================================================
 
   /// Returns an instance of [InkContainer] matching the given parameters.

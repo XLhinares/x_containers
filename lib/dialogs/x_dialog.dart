@@ -78,73 +78,41 @@ class XDialog {
   /// Displays the dialog on the screen.
   void show(BuildContext context) {
     showDialog(
-        context: context,
-        builder: (context) => BackdropFilter(
-          filter: ImageFilter.blur(
-            sigmaX: backgroundBlur,
-            sigmaY: backgroundBlur,
-          ),
-          child: AlertDialog(
-            backgroundColor: xTheme.cardColor,
-            shape: RoundedRectangleBorder(borderRadius: xTheme.dialogBorderRadius),
-            title: DefaultTextStyle(
-                style: Get.textTheme.titleSmall!,
-                child: title
-            ),
-            content: DefaultTextStyle(
-                style: Get.textTheme.bodyMedium!,
-                child: content ?? const SizedBox()
-            ),
-            actions: <Widget>[
-              TextButton(
-                onPressed: () {
-                  Get.back();
-                  onCancel?.call();
-                },
-                child: Text(cancelText ?? "Cancel"),
-              ),
-              TextButton(
-                onPressed: () {
-                  Get.back();
-                  onValidate?.call();
-                },
-                child: Text(validateText ?? "Okay"),
-              ),
-            ],
-          ),
+      context: context,
+      builder: (context) => BackdropFilter(
+        filter: ImageFilter.blur(
+          sigmaX: backgroundBlur,
+          sigmaY: backgroundBlur,
         ),
+        child: AlertDialog(
+          backgroundColor: xTheme.cardColor,
+          shape: RoundedRectangleBorder(borderRadius: xTheme.dialogBorderRadius),
+          title: DefaultTextStyle(
+              style: Get.textTheme.titleSmall!,
+              child: title
+          ),
+          content: DefaultTextStyle(
+              style: Get.textTheme.bodyMedium!,
+              child: content ?? const SizedBox()
+          ),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Get.back();
+                onCancel?.call();
+              },
+              child: Text(cancelText ?? "Cancel"),
+            ),
+            TextButton(
+              onPressed: () {
+                Get.back();
+                onValidate?.call();
+              },
+              child: Text(validateText ?? "Okay"),
+            ),
+          ],
+        ),
+      ),
     );
-    // Get.dialog(AlertDialog(
-    //   backgroundColor: xTheme.cardColor,
-    //   title: DefaultTextStyle(
-    //       style: Get.textTheme.titleSmall!,
-    //       child: title
-    //   ),
-    //   content: DefaultTextStyle(
-    //       style: Get.textTheme.bodyMedium!,
-    //       child: content ?? const SizedBox()
-    //   ),
-    //   actions: <Widget>[
-    //     TextButton(
-    //       onPressed: () {
-    //         Get.back();
-    //         onCancel?.call();
-    //       },
-    //       child: Text(cancelText ?? "Cancel"),
-    //     ),
-    //     TextButton(
-    //       onPressed: () {
-    //         Get.back();
-    //         onValidate?.call();
-    //       },
-    //       child: Text(validateText ?? "Okay"),
-    //     ),
-    //   ],
-    // ),
-    // barrierColor: Colors.blue
-    // );
   }
-
-// METHODS ===================================================================
-
 }
