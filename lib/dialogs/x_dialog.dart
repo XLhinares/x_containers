@@ -27,6 +27,9 @@ class XDialog {
   /// If it is [null] then the button isn't displayed.
   final String? validateText;
 
+  /// The color of the background of the box.
+  final Color? color;
+
   /// The behavior to execute when the "cancel" button is pressed.
   ///
   /// It isn't optimal to rely on it as the user may close the dialog by tapping
@@ -51,6 +54,7 @@ class XDialog {
     this.validateText = "Okay",
     this.onCancel,
     this.onValidate,
+    this.color,
     this.backgroundBlur = 1,
   });
 
@@ -85,7 +89,7 @@ class XDialog {
           sigmaY: backgroundBlur,
         ),
         child: AlertDialog(
-          backgroundColor: xTheme.cardColor,
+          backgroundColor: color ?? context.theme.cardColor,
           shape: RoundedRectangleBorder(borderRadius: xTheme.dialogBorderRadius),
           title: DefaultTextStyle(
               style: Get.textTheme.titleSmall!,

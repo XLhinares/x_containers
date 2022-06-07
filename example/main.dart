@@ -8,15 +8,17 @@ void main() {
 
   // Setting the global theme of XContainers
   xTheme.set(
-    primaryColor: Colors.blueGrey,
-    shadowColor: Colors.deepPurple,
     padding: const EdgeInsets.all(20),
   );
 
   runApp(
     MaterialApp(
       home: const MyApp(),
-      darkTheme: ThemeData.dark(),
+      darkTheme: xTheme.getTheme(
+        mode: ThemeMode.dark,
+        primary: const Color(0xFF464245),
+        background: const Color(0xFF282627),
+      ),
       themeMode: ThemeMode.dark,
     ),
   );

@@ -2,6 +2,7 @@
 import "package:flutter/material.dart";
 
 // Package dependencies
+import "package:get/get.dart";
 import "package:x_containers/x_containers.dart";
 
 /// A tap-able custom container with ink properties.
@@ -20,10 +21,7 @@ class InkContainer extends StatelessWidget {
   // COLORS --------------------------------------------------------------------
 
   /// The main color of the box.
-  ///
-  /// Defaults to [xTheme.primaryColor]
   final Color? color;
-  Color? get _primaryColor => color ?? xTheme.primaryColor;
 
   /// An optional gradient to color the box.
   ///
@@ -32,10 +30,7 @@ class InkContainer extends StatelessWidget {
   Gradient? get _gradient => gradient;
 
   /// The color of the shadow of the box.
-  ///
-  /// Defaults to [xTheme.shadowColor].
   final Color? shadowColor;
-  Color? get _shadowColor => shadowColor ?? xTheme.shadowColor;
 
   /// Whether the box should have a shadow.
   ///
@@ -99,10 +94,7 @@ class InkContainer extends StatelessWidget {
   final void Function()? onTap;
 
   /// A splash color to paint when the container is tapped.
-  ///
-  /// Defaults to [xTheme.splashColor].
   final Color? splashColor;
-  Color? get _splashColor => splashColor ?? xTheme.splashColor;
 
   /// Whether the container should "splash" when tapped on.
   ///
@@ -146,20 +138,20 @@ class InkContainer extends StatelessWidget {
         color: Colors.transparent,
         borderRadius: _borderRadius,
         elevation: _enableShadow ? 5 : 0,
-        shadowColor: _shadowColor ?? Theme.of(context).shadowColor,
+        shadowColor: shadowColor ?? context.theme.shadowColor,
 
         // A material ancestor for the InkWell
         child: Material(
           color: _gradient != null
               ? null
-              : (_primaryColor ?? Theme.of(context).primaryColor),
+              : (color ?? context.theme.colorScheme.primary),
           borderRadius: _borderRadius,
 
           // A tappable InkWell
           child: InkWell(
             onTap: onTap,
             splashColor: _enableSplash
-                ? (_splashColor ?? Theme.of(context).colorScheme.secondary)
+                ? (splashColor ?? context.theme.splashColor)
                 : Colors.transparent,
             highlightColor: _enableSplash ? null : Colors.transparent,
             borderRadius: _borderRadius,
