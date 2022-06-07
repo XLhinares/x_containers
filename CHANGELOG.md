@@ -1,3 +1,8 @@
+## 0.2.0
+
+- Added: Theme generator from a palette.
+- Improved: XContainer now use context for colors which allows for smooth theme changes.
+
 ## 0.1.0
 
 - Changed: Versioning now use the first number for major versions, the second for minor and the third for fixes.

@@ -78,7 +78,7 @@ class XTheme {
   factory XTheme() => _instance;
 
   /// The actual constructor of the class.
-  XTheme._internal() {}
+  XTheme._internal();
 
   // METHODS ===================================================================
 
@@ -114,7 +114,6 @@ class XTheme {
   ThemeData getTheme ({
     Color? primary,
     Color? secondary,
-    Color? tertiary,
     Color? background,
     Color? backgroundAlt,
     Color? shadowColor,
