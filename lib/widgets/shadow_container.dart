@@ -1,5 +1,6 @@
 // Flutter dependencies
 import "package:flutter/material.dart";
+import 'package:get/get.dart';
 
 // Package dependencies
 import "package:x_containers/x_containers.dart";
@@ -12,10 +13,7 @@ class ShadowContainer extends StatelessWidget {
   // COLORS --------------------------------------------------------------------
 
   /// The main color of the box.
-  ///
-  /// Defaults to [xTheme.primaryColor]
   final Color? color;
-  Color? get _primaryColor => color ?? xTheme.primaryColor;
 
   /// An optional gradient to color the box.
   ///
@@ -24,10 +22,7 @@ class ShadowContainer extends StatelessWidget {
   Gradient? get _gradient => gradient;
 
   /// The color of the shadow of the box.
-  ///
-  /// Defaults to [xTheme.shadowColor].
   final Color? shadowColor;
-  Color? get _shadowColor => shadowColor ?? xTheme.shadowColor;
 
   /// Whether the box should have a shadow.
   ///
@@ -114,31 +109,25 @@ class ShadowContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return Padding(
-      padding: _margin,
-      child: PhysicalModel(
-        color: Colors.transparent,
+    return Container(
+      alignment: _alignment,
+      width: _width,
+      height: _height,
+      padding: _padding,
+      margin: _margin,
+      constraints: _constraints,
+      decoration: BoxDecoration(
+        boxShadow: _enableShadow
+            ? [BoxShadow(color: shadowColor ?? context.theme.shadowColor,)]
+            : [],
+        color: _gradient != null
+            ? Colors.transparent
+            : (color ?? context.theme.colorScheme.primary),
         borderRadius: _borderRadius,
-        elevation: _enableShadow ? 6 : 0,
-        shadowColor: _shadowColor ?? Theme.of(context).shadowColor,
-
-        child: Container(
-          alignment: _alignment,
-          width: _width,
-          height: _height,
-          padding: _padding,
-          constraints: _constraints,
-          decoration: BoxDecoration(
-            color: _gradient != null
-                ? Colors.transparent
-                : (_primaryColor ?? Theme.of(context).primaryColor),
-            borderRadius: _borderRadius,
-            gradient: _gradient,
-            border: _borderDecoration,
-          ),
-          child: _child,
-        ),
+        gradient: _gradient,
+        border: _borderDecoration,
       ),
+      child: _child,
     );
   }
 }

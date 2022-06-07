@@ -37,11 +37,8 @@ class XSnackbar {
 
   // PROPERTIES ---------------------------------------------------------------
 
-  /// The optional color of the Snackbar.
-  ///
-  /// Default to [xTheme.cardColor] or the theme's [backgroundColor].
+  /// The background color of the Snackbar.
   final Color? color;
-  Color get _color => color ?? xTheme.cardColor ?? Get.theme.backgroundColor;
 
   // BEHAVIOR ------------------------------------------------------------------
 
@@ -158,7 +155,7 @@ class XSnackbar {
         horizontal: XLayout.paddingM,
       ),
       borderRadius: XLayout.paddingS,
-      backgroundColor: _color,
+      backgroundColor: color ?? Get.theme.cardColor,
       icon: leading == null
           ? null
           : Padding(

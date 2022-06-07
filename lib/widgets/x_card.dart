@@ -2,6 +2,7 @@
 import "package:flutter/material.dart";
 
 // Package dependencies
+import "package:get/get.dart";
 import "package:x_containers/x_containers.dart";
 
 /// A custom [Card]-like widget to standardize the tiles within the app.
@@ -26,11 +27,7 @@ class XCard extends StatelessWidget {
   // COLOR ---------------------------------------------------------------------
 
   /// The color of the card.
-  ///
-  /// Defaults to [xTheme.cardColor] or the theme card color if needed.
   final Color? color;
-  Color? get _color => color
-      ?? xTheme.cardColor;
 
 
   /// Whether the card should cast a shadow.
@@ -112,7 +109,7 @@ class XCard extends StatelessWidget {
       padding: _padding,
       borderRadius: _borderRadius,
       onTap: onTap,
-      color: _color ?? Theme.of(context).cardColor,
+      color: color ?? context.theme.cardColor,
       enableShadow: _enableShadow,
       child: Row(
         children: [
@@ -131,7 +128,7 @@ class XCard extends StatelessWidget {
               children: [
                 DefaultTextStyle(
                   textAlign: TextAlign.start,
-                  style: Theme.of(context).textTheme.bodyMedium ?? const TextStyle(),
+                  style: Get.textTheme.bodyMedium ?? const TextStyle(),
                   child: title,
                 ),
                 Visibility(
@@ -141,7 +138,7 @@ class XCard extends StatelessWidget {
                 Visibility(
                   visible: subtitle != null,
                   child: DefaultTextStyle(
-                    style: Theme.of(context).textTheme.bodySmall ?? const TextStyle(),
+                    style: Get.textTheme.bodySmall ?? const TextStyle(),
                     child: subtitle ?? const SizedBox(),
                   ),
                 ),
