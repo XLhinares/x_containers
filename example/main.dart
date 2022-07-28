@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
         children: [
 
           // SHADOW CONTAINER --------------------------------------------------
-          ShadowContainer(
+          XContainer(
             margin: EdgeInsets.all(XLayout.paddingM),
             child: const Text("This is a [ShadowContainer]"),
           ),
@@ -55,7 +55,7 @@ class MyApp extends StatelessWidget {
           XLayout.verticalS,
 
           // INK CONTAINER -----------------------------------------------------
-          InkContainer(
+          XInkContainer(
             height: 100,
             margin: EdgeInsets.all(XLayout.paddingM),
             onTap: () => XDialog.text(title: "I have been tapped on!").show(context),

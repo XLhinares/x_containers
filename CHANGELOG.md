@@ -1,7 +1,13 @@
+### 0.2.1
+
+- Changed: [ShadowContainer] becomes [XContainer].
+- Changed: [InkContainer] becomes [XInkContainer].
+- Changed: Input fields now have padding surrounding the contents in [xTheme.getTheme].
+
 ## 0.2.0
 
 - Added: Theme generator from a palette.
-- Improved: XContainer now use context for colors which allows for smooth theme changes.
+- Improved: XContainers now use context for colors which allows for smooth theme changes.
 
 ## 0.1.0
 

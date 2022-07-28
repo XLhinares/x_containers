@@ -104,7 +104,7 @@ class XCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return InkContainer(
+    return XInkContainer(
       margin: _margin,
       padding: _padding,
       borderRadius: _borderRadius,
