@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import "package:x_containers/x_containers.dart";
 
 /// A custom container with a shadow!
-class ShadowContainer extends StatelessWidget {
+class XContainer extends StatelessWidget {
 
   // VARIABLES =================================================================
 
@@ -82,8 +82,8 @@ class ShadowContainer extends StatelessWidget {
 
   // CONSTRUCTOR ===============================================================
 
-  /// Returns an instance of [ShadowContainer] matching the given parameters.
-  const ShadowContainer({
+  /// Returns an instance of [XContainer] matching the given parameters.
+  const XContainer({
     Key? key,
     // color
     this.color,

@@ -14,7 +14,7 @@ import "package:x_containers/x_containers.dart";
 ///
 /// On top of the container, a ink behavior is implemented to allow tapping with
 /// splash animations.
-class InkContainer extends StatelessWidget {
+class XInkContainer extends StatelessWidget {
 
   // VARIABLES =================================================================
 
@@ -104,8 +104,8 @@ class InkContainer extends StatelessWidget {
 
   // CONSTRUCTOR ===============================================================
 
-  /// Returns an instance of [InkContainer] matching the given parameters.
-  const InkContainer({
+  /// Returns an instance of [XInkContainer] matching the given parameters.
+  const XInkContainer({
     Key? key,
     this.child,
     this.color,

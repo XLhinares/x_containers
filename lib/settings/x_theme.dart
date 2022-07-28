@@ -213,7 +213,7 @@ class XTheme {
           borderRadius: XLayout.brcS,
           borderSide: BorderSide.none,
         ),
-        contentPadding: EdgeInsets.symmetric(horizontal: XLayout.paddingS,),
+        contentPadding: EdgeInsets.all(XLayout.paddingS,),
 
       ),
       materialTapTargetSize: materialTapTargetSize,
