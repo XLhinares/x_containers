@@ -1,3 +1,8 @@
+### 0.2.2
+
+- Changed: [XContainer] use a physical model for better shadows.
+- Changed: [XSnackBar] now has a [maxWidth] attribute.
+
 ### 0.2.1
 
 - Changed: [ShadowContainer] becomes [XContainer].
@@ -15,8 +20,8 @@
 
 ## 0.0.3
 
-- Added: XDialog.
-- Added: XSnackbar. 
+- Added: [XDialog].
+- Added: [XSnackbar]. 
 - Improved: Some XTheme values and added support for XDialog and XSnackbar.
 - Improved: Example to include XDialog and XSnackbar.
 - Changed: [xPadding] variables have become static members of [XLayout].

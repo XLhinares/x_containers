@@ -1,6 +1,6 @@
 // Flutter dependencies
 import "package:flutter/material.dart";
-import 'package:get/get.dart';
+import "package:get/get.dart";
 
 // Package dependencies
 import "package:x_containers/x_containers.dart";
@@ -109,25 +109,37 @@ class XContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return Container(
-      alignment: _alignment,
-      width: _width,
-      height: _height,
-      padding: _padding,
-      margin: _margin,
-      constraints: _constraints,
-      decoration: BoxDecoration(
-        boxShadow: _enableShadow
-            ? [BoxShadow(color: shadowColor ?? context.theme.shadowColor,)]
-            : [],
-        color: _gradient != null
-            ? Colors.transparent
-            : (color ?? context.theme.colorScheme.primary),
+    return  Padding(
+      padding: _margin,
+
+      // A Physical model to be able to cast a shadow.
+      child: PhysicalModel(
+        color: Colors.transparent,
         borderRadius: _borderRadius,
-        gradient: _gradient,
-        border: _borderDecoration,
+        elevation: _enableShadow ? 5 : 0,
+        shadowColor: shadowColor ?? context.theme.shadowColor,
+
+        // A material ancestor for the InkWell
+        child: Material(
+          borderRadius: _borderRadius,
+          child: Container(
+            alignment: _alignment,
+            width: _width,
+            height: _height,
+            padding: _padding,
+            constraints: _constraints,
+            decoration: BoxDecoration(
+              color: _gradient != null
+                  ? null
+                  : (color ?? context.theme.colorScheme.primary),
+              gradient: _gradient,
+              borderRadius: _borderRadius,
+              border: _borderDecoration,
+            ),
+            child: _child,
+          ),
+        ),
       ),
-      child: _child,
     );
   }
 }

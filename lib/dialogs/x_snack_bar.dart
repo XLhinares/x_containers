@@ -37,6 +37,11 @@ class XSnackbar {
 
   // PROPERTIES ---------------------------------------------------------------
 
+  /// The maximum horizontal extent of the Snackbar.
+  ///
+  /// Usually used when the screen is too wide.
+  final double? maxWidth;
+
   /// The background color of the Snackbar.
   final Color? color;
 
@@ -56,6 +61,7 @@ class XSnackbar {
     this.leading,
     this.trailing,
     this.color,
+    this.maxWidth,
     this.duration,
   });
 
@@ -138,11 +144,11 @@ class XSnackbar {
     GetSnackBar(
       titleText: ListTile(
         title: DefaultTextStyle(
-          style: titleStyle ?? Get.textTheme.titleSmall ?? const TextStyle(),
+          style: titleStyle ?? Get.textTheme.titleMedium ?? const TextStyle(),
           child: title,
         ),
         subtitle: DefaultTextStyle(
-          style: messageStyle ?? Get.textTheme.bodySmall ?? const TextStyle(),
+          style: messageStyle ?? Get.textTheme.bodyMedium ?? const TextStyle(),
           child: message ?? const SizedBox(),
         ),
         trailing: trailing,
@@ -162,6 +168,7 @@ class XSnackbar {
         padding: EdgeInsets.only(left: XLayout.paddingS,),
         child: leading,
       ),
+      maxWidth: maxWidth,
     ),
   );
 
