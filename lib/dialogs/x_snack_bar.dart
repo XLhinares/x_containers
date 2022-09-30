@@ -76,6 +76,7 @@ class XSnackbar {
     Widget? leading,
     Color? color,
     Duration? duration,
+    double? maxWidth,
     void Function()? onUndo
   }) => XSnackbar(
     title: title,
@@ -89,6 +90,7 @@ class XSnackbar {
     ),
     color: color,
     duration: duration,
+    maxWidth: maxWidth,
   );
 
   /// Returns an instance of [XSnackbar] made for displaying mainly text.
@@ -101,6 +103,7 @@ class XSnackbar {
     Widget? trailing,
     Color? color,
     Duration? duration,
+    double? maxWidth,
   }) => XSnackbar(
     title: Text(title),
     message: message == null ? null : Text(message),
@@ -110,6 +113,7 @@ class XSnackbar {
     trailing: trailing,
     color: color,
     duration: duration,
+    maxWidth: maxWidth,
   );
 
   /// Returns an instance of [XSnackbar] made for displaying mainly text with an undo button.
@@ -123,6 +127,7 @@ class XSnackbar {
     Widget? leading,
     Color? color,
     Duration? duration,
+    double? maxWidth,
     void Function()? onUndo
   }) => XSnackbar(
     title: Text(title),
@@ -135,6 +140,7 @@ class XSnackbar {
       child: const Text("Undo"),
     ),
     duration: duration,
+    maxWidth: maxWidth,
   );
 
   // METHODS ===================================================================
