@@ -1,11 +1,7 @@
-// Flutter dependencies
 import "package:flutter/material.dart";
-
-// Package dependencies
 import "package:get/get.dart";
 
-// Project dependencies
-import "package:x_containers/x_containers.dart";
+import "../../x_containers.dart";
 
 /// A custom snackbar matching the theme of the app.
 ///

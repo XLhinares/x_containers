@@ -1,12 +1,9 @@
-// Flutter dependencies
 import "package:flutter/material.dart";
-
-// Project dependencies
 import "package:x_containers/x_containers.dart";
 
 void main() {
 
-  // Setting the global theme of XContainers
+  // Setting the global theme shared across XContainers.
   xTheme.set(
     padding: const EdgeInsets.all(20),
   );
@@ -27,8 +24,6 @@ void main() {
 /// A mock app to demonstrate how to use the XContainers.
 class MyApp extends StatelessWidget {
 
-  // VARIABLES =================================================================
-
   // CONSTRUCTOR ===============================================================
 
   /// Returns an instance of [MyApp] matching the given parameters.
@@ -40,7 +35,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Example"),
+        title: const Text("XContainer: Examples"),
       ),
       body: ListView(
         children: [
@@ -71,12 +66,9 @@ class MyApp extends StatelessWidget {
             margin: const EdgeInsets.all(20),
             density: 20,
             onTap: () => XSnackbar.text(title: "You can also tap on me :)").show(),
-          )
+          ),
         ],
       ),
     );
   }
-
-  // METHODS ===================================================================
-
 }

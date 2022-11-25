@@ -1,9 +1,7 @@
-// Flutter dependencies
 import "package:flutter/material.dart";
 import "package:get/get.dart";
 
-// Package dependencies
-import "package:x_containers/x_containers.dart";
+import "../../x_containers.dart";
 
 /// A custom container with a shadow!
 class XContainer extends StatelessWidget {

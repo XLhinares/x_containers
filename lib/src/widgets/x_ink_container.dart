@@ -1,15 +1,13 @@
-// Flutter dependencies
 import "package:flutter/material.dart";
-
-// Package dependencies
 import "package:get/get.dart";
-import "package:x_containers/x_containers.dart";
+
+import "../../x_containers.dart";
 
 /// A tap-able custom container with ink properties.
 ///
 /// It has the same properties as a regular container with the exception the some
 /// decorations can be set directly without using a [BoxDecoration].
-/// Obviously, these decorations will be overriden if the property [decoration]
+/// Obviously, these decorations will be overridden if the property [decoration]
 /// is provided.
 ///
 /// On top of the container, a ink behavior is implemented to allow tapping with
