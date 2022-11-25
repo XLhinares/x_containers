@@ -1,9 +1,7 @@
-// Flutter dependencies
 import "package:flutter/material.dart";
-
-// Package dependencies
 import "package:get/get.dart";
-import "package:x_containers/x_containers.dart";
+
+import "../../x_containers.dart";
 
 /// A custom [Card]-like widget to standardize the tiles within the app.
 class XCard extends StatelessWidget {
