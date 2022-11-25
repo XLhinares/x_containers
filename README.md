@@ -1,15 +1,15 @@
 # XContainers
 
 A Flutter package offering more adaptive container widgets.
-I initially created the `ShadowContainer` as a way to have a customizable container with a shadow.
-Then I implemented the other XContainers to easily match the uniformize the style of the containers in my apps without repeating style code everywhere.
+I initially created the `XContainer` (formerly `ShadowContainer`) as a way to have a customizable container with a shadow.
+Then I implemented the other XContainers to easily match and uniformize the style of the containers in my projects without repeating style code everywhere.
 
 ## Features
 
 Add this to your Flutter app to:
 - Have more container-type widgets at your disposal.
 - Uniformize the style of the containers within your app. 
-- Easily manage that style via a shared setting object.
+- Easily manage that style via a shared theme object.
 
 ## Getting started
 
@@ -26,30 +26,84 @@ import 'package:x_containers/x_containers.dart';
 ## Usage
 
 This package gives you access to the following XContainers:
-- `ShadowContainer`: A container-type widget with a shadow and some more customization than a regular container.
-- `InkContainer`: A container-type widget with a shadow embedding a GestureDetector with a splash animation.
+- `XContainer`: A container-type widget with a shadow and some more customization than a regular container.
+- `XInkContainer`: A container-type widget with a shadow embedding a GestureDetector with a splash animation.
 - `XCard`: A card-type widget meant to replace ListTiles inside Cards, it also fixes the issue of ListTile's leading and trailing properties not being leveled.
 - `XDialog`: A custom dialog object that can be displayed with its `show` method.
 - `XSnackbar`: A custom dialog object that can be displayed with its `show` method.
 
-You will also find a `xSetting` object, it allows you to customize the default properties of all the XContainers.
-Note that if you don't set default colors, the Theme colors will be applied.
+You will also find a `xTheme` singleton and a `XLayout` class.
+
+- `xTheme` it allows you to customize the default properties shared by all the XContainers, and create app themes.
+- `XLayout` is a collection of constants used to uniformize the look of your app (for instance, it contains preset padding values or preset `SizedBox`).
+
+All these are explained below.
+
+### XContainers
+
+All the `XContainer` are similar to their non-X counterparts but I tried to bring the most used properties to top-level (so you don't have to code a `BoxDecoration` every time you want a shadow for instance).
 
 ```dart
-xSettings.primaryColor = Colors.red;
-xSettings.enableShadow = false;
-
-ShadowContainer(
+// Instantiating a [XContainer].
+XContainer(
   padding: EdgeInset.all(10),
+  height: 100,
   enableShadow: true,
   child: Text("I have a shadow!"),
 );
 
-InkContainer(
+// Instantiating a [XInkContainer].
+XInkContainer(
   padding: EdgeInset.all(10),
   onTap: () => print("I've been tapped on!"),
   child: Text("Tap me!"),
 );
+```
+
+### xTheme
+
+`xTheme` has two roles:
+- Being the fallback theme for all XContainers so you can set it at the beginning of the app and not write a style object for each of your containers. 
+- Generating a `ThemeData` without having to set every single field during instantiation (specific fields now fallback to more generic ones, especially for colors). 
+
+```dart
+// Setting the [XContainer] theme.
+xTheme.set(
+  margin: EdgeInsets.all(0),
+  padding: EdgeInsets.all(XLayout.paddingS),
+);
+
+// Instantiating a theme preset for dark mode.
+ThemeData darkMode = xTheme.getTheme(
+  mode: ThemeMode.dark,
+  primary: Color(0xFF464245),
+  secondary: Color(0xFFAF3131),
+  background: Color(0xFF282627),
+  cardColor: Color(0xFF464245),
+  containerColor: Color(0xFF686866),
+);
+```
+
+### XLayout
+
+The `XLayout` class exists because I tend to use 4 levels of padding (XS, S, M and L) in each of my projects 
+and it's easier to just embed them all in a package rather than adding them to my `globals.dart` in every project. 
+They are embedded in a class so they don't conflict with others variables.
+Furthermore, they are all static so there is no need to instantiate the class.
+Finally, if you can change a padding value, the other fields will match the new padding.
+
+```dart
+  /// Large padding value.
+  double paddingL = 40;
+
+  /// Large circular border radius.
+  BorderRadius brcL = BorderRadius.circular(paddingL);
+
+  /// Large horizontal [SizedBox].
+  SizedBox horizontalL = SizedBox(width: paddingL);
+
+  /// Large vertical [SizedBox].
+  SizedBox verticalL = SizedBox(height: paddingL);
 ```
 
 ## Additional information

@@ -3,6 +3,7 @@
 - `REFACTORED`: Using relative imports.
 - `REFACTORED`: Non-top-level code has been moved to `lib/src/`.
 - `ADDED`: A description of how to use `CHANGELOG.md`.
+- `IMPROVED`: `README.md` to be more clear and match some updates.
 
 ### 0.2.1
 
