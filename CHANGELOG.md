@@ -1,3 +1,7 @@
+### 1.0.1
+
+- `IMPROVED`: Extensive examples of the use of the different XContainers.
+
 # 1.0.0
 
 - `DELETED`: Uses of the `get` package, because it made XContainers not work with non-get apps. 
