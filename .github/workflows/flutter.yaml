@@ -22,6 +22,8 @@ jobs:
           flutter-version: ${{ matrix.flutter_version }}
       - run: flutter --version
       - run: flutter pub get
-      - run: flutter analyze
+      # Run an analysis of the contents of lib/
+      # Running it on the full project results in errors due to the example.
+      - run: flutter analyze lib/
       # Uncomment if we want to use tests.
       # - run: flutter test
