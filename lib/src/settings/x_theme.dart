@@ -2,7 +2,6 @@ import "dart:ui";
 
 import "package:flutter/cupertino.dart";
 import "package:flutter/material.dart";
-import "package:get/get.dart";
 
 import "../../x_containers.dart";
 
@@ -196,10 +195,82 @@ class XTheme {
 
     final bool isDarkMode = mode == ThemeMode.dark;
     final Color textColor = isDarkMode ? Colors.white : Colors.black87;
+    // Custom [TextTheme] is broken and leads to crashes when switching between themes.
+    // final TextTheme defaultTextTheme = const TextTheme().merge(TextTheme(
+    //   // TITLE MEDIUM
+    //   titleLarge: const TextStyle().merge(const TextStyle(
+    //     fontSize: 24,
+    //     fontWeight: FontWeight.w600,
+    //     letterSpacing: 0.15,
+    //     inherit: true,
+    //   )),
+    //   // TITLE MEDIUM
+    //   titleMedium: const TextStyle().merge(const TextStyle(
+    //     fontSize: 20,
+    //     fontWeight: FontWeight.w600,
+    //     letterSpacing: 0.15,
+    //     inherit: true,
+    //   )),
+    //   // TITLE SMALL
+    //   titleSmall: const TextStyle().merge(const TextStyle(
+    //     fontSize: 16,
+    //     fontWeight: FontWeight.w600,
+    //     letterSpacing: 0.15,
+    //     inherit: true,
+    //   )),
+    //   // BODY MEDIUM
+    //   bodyLarge: const TextStyle().merge(const TextStyle(
+    //     fontSize: 18,
+    //     fontWeight: FontWeight.w400,
+    //     letterSpacing: 0.15,
+    //     inherit: true,
+    //   )),
+    //   // BODY MEDIUM
+    //   bodyMedium: const TextStyle().merge(const TextStyle(
+    //     fontSize: 15,
+    //     fontWeight: FontWeight.w400,
+    //     letterSpacing: 0.15,
+    //     inherit: true,
+    //   )),
+    //   // BODY SMALL
+    //   bodySmall: const TextStyle().merge(const TextStyle(
+    //     fontSize: 12,
+    //     fontWeight: FontWeight.w400,
+    //     letterSpacing: 0.15,
+    //     inherit: true,
+    //   )),
+    // )).apply(
+    //   bodyColor: textColor,
+    //   displayColor: textColor,
+    //   decorationColor: textColor,
+    // );
+    final TextTheme defaultTextTheme = const TextTheme().apply(
+        bodyColor: textColor,
+        displayColor: textColor,
+        decorationColor: textColor,
+      );
 
-    ThemeData res = isDarkMode
+    final ThemeData res = isDarkMode
         ? ThemeData.dark()
         : ThemeData.light();
+
+    late final ColorScheme defaultColorScheme;
+    if (primary != null && secondary != null && background != null) {
+      defaultColorScheme = isDarkMode
+          ? ColorScheme.dark(
+        secondary: secondary,
+        primary: primary,
+        background: background,)
+          : ColorScheme.light(
+        secondary: secondary,
+        primary: primary,
+        background: background,);
+    } else {
+      defaultColorScheme = isDarkMode
+          ? const ColorScheme.dark()
+          : const ColorScheme.light();
+    }
+
 
     return res.copyWith(
       applyElevationOverlayColor: applyElevationOverlayColor,
@@ -222,11 +293,7 @@ class XTheme {
       splashFactory: splashFactory,
       visualDensity: visualDensity,
       useMaterial3: useMaterial3,
-      colorScheme: colorScheme ?? const ColorScheme.dark().copyWith(
-        secondary: secondary,
-        primary: primary,
-        background: background,
-      ),
+      colorScheme: colorScheme ?? defaultColorScheme,
       brightness: brightness,
       primaryColorLight: primaryColorLight,
       primaryColorDark: primaryColorDark,
@@ -250,38 +317,9 @@ class XTheme {
       hintColor: hintColor,
       errorColor: errorColor,
       toggleableActiveColor: toggleableActiveColor,
-      typography: typography,
       // TEXT THEME ------------------------------------------------------------
-      textTheme: textTheme ?? const TextTheme().copyWith(
-        // TITLE MEDIUM
-        titleMedium: const TextStyle().copyWith(
-          fontSize: 24,
-          fontWeight: FontWeight.w600,
-          letterSpacing: 0.15,
-        ),
-        // TITLE SMALL
-        titleSmall: const TextStyle().copyWith(
-          fontSize: 20,
-          fontWeight: FontWeight.w600,
-          letterSpacing: 0.15,
-        ),
-        // BODY MEDIUM
-        bodyMedium: const TextStyle().copyWith(
-          fontSize: 18,
-          fontWeight: FontWeight.w400,
-          letterSpacing: 0.15,
-        ),
-        // BODY SMALL
-        bodySmall: const TextStyle().copyWith(
-          fontSize: 15,
-          fontWeight: FontWeight.w400,
-          letterSpacing: 0.15,
-        ),
-      ).apply(
-        bodyColor: textColor,
-        displayColor: textColor,
-        decorationColor: textColor,
-      ),
+      typography: typography,
+      textTheme: textTheme ?? defaultTextTheme,
       primaryTextTheme: primaryTextTheme,
       // OTHER -----------------------------------------------------------------
       iconTheme: iconTheme ?? const IconThemeData().copyWith(
@@ -289,14 +327,14 @@ class XTheme {
       ),
       primaryIconTheme: primaryIconTheme,
       appBarTheme: appBarTheme ?? const AppBarTheme().copyWith(
-        color: secondary,
-        titleTextStyle: const TextStyle().copyWith(
-          color: textColor,
-          fontSize: 24,
-          fontWeight: FontWeight.w600,
-          fontFeatures: [const FontFeature.enable("smcp")],
-          letterSpacing: 0.25,
-        )
+          color: secondary,
+          titleTextStyle: const TextStyle().copyWith(
+            color: textColor,
+            fontSize: 24,
+            fontWeight: FontWeight.w600,
+            fontFeatures: [const FontFeature.enable("smcp")],
+            letterSpacing: 0.25,
+          )
       ),
       bannerTheme: bannerTheme,
       bottomAppBarTheme: bottomAppBarTheme,
@@ -337,13 +375,18 @@ class XTheme {
       switchTheme: switchTheme,
       tabBarTheme: tabBarTheme,
       textButtonTheme: textButtonTheme ?? TextButtonThemeData(
+        // If there are no background color nor alternate background color,
+        // the style is not changed;
+        // Otherwise, it is set to match the alternate background color (or the
+        // regular background color if there is none.
         style: background == null && backgroundAlt == null
             ? null
             : const ButtonStyle().copyWith(
-          backgroundColor: MaterialStateProperty.all<Color>(backgroundAlt
-              ?? background!
+          backgroundColor: MaterialStateProperty.all<Color>(
+              backgroundAlt ?? background!
           ),
-          textStyle: MaterialStateProperty.all<TextStyle?>(Get.textTheme.bodyMedium),
+          foregroundColor: MaterialStateProperty.all<Color>(textColor),
+          textStyle: MaterialStateProperty.all<TextStyle?>(defaultTextTheme.bodyMedium),
         ),
       ),
       textSelectionTheme: textSelectionTheme ?? (secondary == null
