@@ -19,7 +19,6 @@ void main() {
 
 /// A mock app to demonstrate how to use the XContainers.
 class ExampleApp extends StatelessWidget {
-
   /// Returns a [ExampleApp] matching the given parameters.
   const ExampleApp({super.key});
 
@@ -35,7 +34,6 @@ class ExampleApp extends StatelessWidget {
 
 /// A simple tab listing a few XContainers.
 class Home extends StatelessWidget {
-
   // CONSTRUCTOR ===============================================================
 
   /// Returns an instance of [Home] matching the given parameters.
@@ -45,7 +43,6 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     const List<Widget> examples = [
       ExampleContainer(),
       ExampleXContainer(),

@@ -3,7 +3,6 @@ import "package:x_containers/x_containers.dart";
 
 /// An example for using the [XInkContainer] widget.
 class ExampleXInkContainer extends StatelessWidget {
-
   /// Returns a [ExampleXInkContainer] matching the given parameters.
   const ExampleXInkContainer({super.key});
 
@@ -13,8 +12,9 @@ class ExampleXInkContainer extends StatelessWidget {
       height: 100,
       margin: EdgeInsets.all(XLayout.paddingS),
       onTap: () {},
-      child: const Text("This is an [XInkContainer].\n\n"
-          "It can be tapped!",
+      child: const Text(
+        "This is an [XInkContainer].\n\n"
+        "It can be tapped!",
         textAlign: TextAlign.center,
       ),
     );

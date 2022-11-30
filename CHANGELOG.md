@@ -1,27 +1,34 @@
-### 1.0.1
+## 1.0.2
+
+- `ADDED`: An XContainers preview image for the README.
+- `IMPROVED`: The README structure for legibility.
+- `IMPROVED`: The CHANGELOG because it wasn't displayed properly on pub.dev.
+- `REFACTORED`: The code using `flutter format .`.
+
+## 1.0.1
 
 - `IMPROVED`: Extensive examples of the use of the different XContainers.
 
-# 1.0.0
+## 1.0.0
 
 - `DELETED`: Uses of the `get` package, because it made XContainers not work with non-get apps. 
 - `DELETED`: [PhysicalModel] from [XContainer] and [XInkContainer] since the [Material] widget handles the same properties. 
 - `DELETED`: Temporarily got rid of the custom [TextTheme] generation by the [xTheme] object, as it caused issues during theme changes.
 - `IMPROVED`: Generation of a [ThemeData] by the [xTheme] object.
 
-### 0.2.3
+## 0.2.3
 
 - `REFACTORED`: Using relative imports.
 - `REFACTORED`: Non-top-level code has been moved to `lib/src/`.
 - `ADDED`: A description of how to use `CHANGELOG.md`.
 - `IMPROVED`: `README.md` to be more clear and match some updates.
 
-### 0.2.2
+## 0.2.2
 
 - `CHANGED`: [XContainer] use a physical model for better shadows.
 - `CHANGED`: [XSnackBar] now has a [maxWidth] attribute.
 
-### 0.2.1
+## 0.2.1
 
 - `CHANGED`: [ShadowContainer] becomes [XContainer].
 - `CHANGED`: [InkContainer] becomes [XInkContainer].
@@ -61,7 +68,7 @@
 ## How to use
 
 Every time a new version is uploaded, add a new section to the top of the file.
-The title of the section should start with # for a major version, ## for a minor version, and ### for a hotfix.
+The title each section should start with `##`.
 The content of the section should be a bullet point list, with each point starting by one of the keywords listed below, and followed by a short description of the change.
 
 Keywords:

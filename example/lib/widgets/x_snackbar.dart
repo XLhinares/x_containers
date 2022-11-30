@@ -3,7 +3,6 @@ import "package:x_containers/x_containers.dart";
 
 /// An example for using the [XSnackbar] widget.
 class ExampleXSnackbar extends StatelessWidget {
-
   /// Returns a [ExampleXSnackbar] matching the given parameters.
   const ExampleXSnackbar({super.key});
 
@@ -11,12 +10,14 @@ class ExampleXSnackbar extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all(Theme.of(context).colorScheme.primary),
+        backgroundColor:
+            MaterialStateProperty.all(Theme.of(context).colorScheme.primary),
       ),
       onPressed: () => XSnackbar.text(
         title: "Here it is :)",
       ).show(context),
-      child: Text("Tap to display an [XSnackbar].",
+      child: Text(
+        "Tap to display an [XSnackbar].",
         style: Theme.of(context).textTheme.bodyMedium,
       ),
     );

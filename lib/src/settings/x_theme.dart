@@ -14,7 +14,6 @@ import "../../x_containers.dart";
 ///
 /// The individual settings of each instance still may be customized.
 class XTheme {
-
   // VARIABLES =================================================================
 
   // PADDING -------------------------------------------------------------------
@@ -80,7 +79,6 @@ class XTheme {
 
   // METHODS ===================================================================
 
-
   /// Set several properties at once.
   ///
   /// WARNING: arguments not set or set to null won't change the value of the properties.
@@ -88,7 +86,7 @@ class XTheme {
   /// ```dart
   ///   xTheme.shadowColor = null;
   /// ```
-  void set ({
+  void set({
     double? paddingValue,
     EdgeInsetsGeometry? padding,
     EdgeInsetsGeometry? margin,
@@ -109,7 +107,7 @@ class XTheme {
   }
 
   /// Returns a custom theme that takes into account the xTheme values.
-  ThemeData getTheme ({
+  ThemeData getTheme({
     Color? primary,
     Color? secondary,
     Color? background,
@@ -192,7 +190,6 @@ class XTheme {
     TooltipThemeData? tooltipTheme,
     ExpansionTileThemeData? expansionTileTheme,
   }) {
-
     final bool isDarkMode = mode == ThemeMode.dark;
     final Color textColor = isDarkMode ? Colors.white : Colors.black87;
     // Custom [TextTheme] is broken and leads to crashes when switching between themes.
@@ -245,47 +242,47 @@ class XTheme {
     //   decorationColor: textColor,
     // );
     final TextTheme defaultTextTheme = const TextTheme().apply(
-        bodyColor: textColor,
-        displayColor: textColor,
-        decorationColor: textColor,
-      );
+      bodyColor: textColor,
+      displayColor: textColor,
+      decorationColor: textColor,
+    );
 
-    final ThemeData res = isDarkMode
-        ? ThemeData.dark()
-        : ThemeData.light();
+    final ThemeData res = isDarkMode ? ThemeData.dark() : ThemeData.light();
 
     late final ColorScheme defaultColorScheme;
     if (primary != null && secondary != null && background != null) {
       defaultColorScheme = isDarkMode
           ? ColorScheme.dark(
-        secondary: secondary,
-        primary: primary,
-        background: background,)
+              secondary: secondary,
+              primary: primary,
+              background: background,
+            )
           : ColorScheme.light(
-        secondary: secondary,
-        primary: primary,
-        background: background,);
+              secondary: secondary,
+              primary: primary,
+              background: background,
+            );
     } else {
-      defaultColorScheme = isDarkMode
-          ? const ColorScheme.dark()
-          : const ColorScheme.light();
+      defaultColorScheme =
+          isDarkMode ? const ColorScheme.dark() : const ColorScheme.light();
     }
-
 
     return res.copyWith(
       applyElevationOverlayColor: applyElevationOverlayColor,
       cupertinoOverrideTheme: cupertinoOverrideTheme,
       extensions: extensions,
-      inputDecorationTheme: inputDecorationTheme ?? const InputDecorationTheme().copyWith(
-        filled: true,
-        fillColor: background,
-        border: OutlineInputBorder(
-          borderRadius: XLayout.brcS,
-          borderSide: BorderSide.none,
-        ),
-        contentPadding: EdgeInsets.all(XLayout.paddingS,),
-
-      ),
+      inputDecorationTheme: inputDecorationTheme ??
+          const InputDecorationTheme().copyWith(
+            filled: true,
+            fillColor: background,
+            border: OutlineInputBorder(
+              borderRadius: XLayout.brcS,
+              borderSide: BorderSide.none,
+            ),
+            contentPadding: EdgeInsets.all(
+              XLayout.paddingS,
+            ),
+          ),
       materialTapTargetSize: materialTapTargetSize,
       pageTransitionsTheme: pageTransitionsTheme,
       platform: platform,
@@ -322,45 +319,49 @@ class XTheme {
       textTheme: textTheme ?? defaultTextTheme,
       primaryTextTheme: primaryTextTheme,
       // OTHER -----------------------------------------------------------------
-      iconTheme: iconTheme ?? const IconThemeData().copyWith(
-        color: textColor,
-      ),
-      primaryIconTheme: primaryIconTheme,
-      appBarTheme: appBarTheme ?? const AppBarTheme().copyWith(
-          color: secondary,
-          titleTextStyle: const TextStyle().copyWith(
+      iconTheme: iconTheme ??
+          const IconThemeData().copyWith(
             color: textColor,
-            fontSize: 24,
-            fontWeight: FontWeight.w600,
-            fontFeatures: [const FontFeature.enable("smcp")],
-            letterSpacing: 0.25,
-          )
-      ),
+          ),
+      primaryIconTheme: primaryIconTheme,
+      appBarTheme: appBarTheme ??
+          const AppBarTheme().copyWith(
+              color: secondary,
+              titleTextStyle: const TextStyle().copyWith(
+                color: textColor,
+                fontSize: 24,
+                fontWeight: FontWeight.w600,
+                fontFeatures: [const FontFeature.enable("smcp")],
+                letterSpacing: 0.25,
+              )),
       bannerTheme: bannerTheme,
       bottomAppBarTheme: bottomAppBarTheme,
       bottomNavigationBarTheme: bottomNavigationBarTheme,
       bottomSheetTheme: bottomSheetTheme,
       buttonBarTheme: buttonBarTheme,
-      buttonTheme: buttonTheme ?? (secondary == null
-          ? null
-          : const ButtonThemeData().copyWith(
-        buttonColor: secondary,
-      )),
+      buttonTheme: buttonTheme ??
+          (secondary == null
+              ? null
+              : const ButtonThemeData().copyWith(
+                  buttonColor: secondary,
+                )),
       cardTheme: cardTheme,
-      checkboxTheme: checkboxTheme ?? (secondary == null
-          ? null
-          : const CheckboxThemeData().copyWith(
-        fillColor: MaterialStateProperty.all(secondary),
-      )),
+      checkboxTheme: checkboxTheme ??
+          (secondary == null
+              ? null
+              : const CheckboxThemeData().copyWith(
+                  fillColor: MaterialStateProperty.all(secondary),
+                )),
       chipTheme: chipTheme,
       dataTableTheme: dataTableTheme,
       dialogTheme: dialogTheme,
       dividerTheme: dividerTheme,
-      drawerTheme: drawerTheme ?? (backgroundAlt == null
-          ? null
-          : DrawerThemeData(
-        backgroundColor: backgroundAlt,
-      )),
+      drawerTheme: drawerTheme ??
+          (backgroundAlt == null
+              ? null
+              : DrawerThemeData(
+                  backgroundColor: backgroundAlt,
+                )),
       elevatedButtonTheme: elevatedButtonTheme,
       floatingActionButtonTheme: floatingActionButtonTheme,
       listTileTheme: listTileTheme,
@@ -374,32 +375,33 @@ class XTheme {
       snackBarTheme: snackBarTheme,
       switchTheme: switchTheme,
       tabBarTheme: tabBarTheme,
-      textButtonTheme: textButtonTheme ?? TextButtonThemeData(
-        // If there are no background color nor alternate background color,
-        // the style is not changed;
-        // Otherwise, it is set to match the alternate background color (or the
-        // regular background color if there is none.
-        style: background == null && backgroundAlt == null
-            ? null
-            : const ButtonStyle().copyWith(
-          backgroundColor: MaterialStateProperty.all<Color>(
-              backgroundAlt ?? background!
+      textButtonTheme: textButtonTheme ??
+          TextButtonThemeData(
+            // If there are no background color nor alternate background color,
+            // the style is not changed;
+            // Otherwise, it is set to match the alternate background color (or the
+            // regular background color if there is none.
+            style: background == null && backgroundAlt == null
+                ? null
+                : const ButtonStyle().copyWith(
+                    backgroundColor: MaterialStateProperty.all<Color>(
+                        backgroundAlt ?? background!),
+                    foregroundColor:
+                        MaterialStateProperty.all<Color>(textColor),
+                    textStyle: MaterialStateProperty.all<TextStyle?>(
+                        defaultTextTheme.bodyMedium),
+                  ),
           ),
-          foregroundColor: MaterialStateProperty.all<Color>(textColor),
-          textStyle: MaterialStateProperty.all<TextStyle?>(defaultTextTheme.bodyMedium),
-        ),
-      ),
-      textSelectionTheme: textSelectionTheme ?? (secondary == null
-          ? null
-          : const TextSelectionThemeData().copyWith(
-        cursorColor: secondary,
-      )),
+      textSelectionTheme: textSelectionTheme ??
+          (secondary == null
+              ? null
+              : const TextSelectionThemeData().copyWith(
+                  cursorColor: secondary,
+                )),
       timePickerTheme: timePickerTheme,
       toggleButtonsTheme: toggleButtonsTheme,
       tooltipTheme: tooltipTheme,
       expansionTileTheme: expansionTileTheme,
     );
-
   }
-
 }
