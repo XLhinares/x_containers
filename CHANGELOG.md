@@ -1,3 +1,8 @@
+## 1.0.3-pre
+
+- `IMPROVED`: The README for even better legibility.
+- `IMPROVED`: Using asset image from github.
+
 ## 1.0.2
 
 - `ADDED`: An XContainers preview image for the README.
@@ -63,7 +68,6 @@
 - `ADDED`: XCard.
 - `ADDED`: XTheme to manage the shared properties.
 
----
 
 ## How to use
 
