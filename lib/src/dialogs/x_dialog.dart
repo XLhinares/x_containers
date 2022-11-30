@@ -6,7 +6,6 @@ import "../../x_containers.dart";
 
 /// A custom [AlertDialog]
 class XDialog {
-
   // VARIABLES =================================================================
 
   /// The text to display at the top of the dialog.
@@ -57,7 +56,7 @@ class XDialog {
   });
 
   /// Returns an XDialog displaying only text messages.
-  factory XDialog.text ({
+  factory XDialog.text({
     required String title,
     String? content,
     String? cancelText = "Cancel",
@@ -65,15 +64,16 @@ class XDialog {
     void Function()? onCancel,
     void Function()? onValidate,
     double backgroundBlur = 1,
-  }) => XDialog(
-    title: Text(title),
-    content: content == null ? null : Text(content),
-    cancelText: cancelText,
-    validateText: validateText,
-    onCancel: onCancel,
-    onValidate: onValidate,
-    backgroundBlur: backgroundBlur,
-  );
+  }) =>
+      XDialog(
+        title: Text(title),
+        content: content == null ? null : Text(content),
+        cancelText: cancelText,
+        validateText: validateText,
+        onCancel: onCancel,
+        onValidate: onValidate,
+        backgroundBlur: backgroundBlur,
+      );
 
   // BUILD =====================================================================
 
@@ -88,15 +88,16 @@ class XDialog {
         ),
         child: AlertDialog(
           backgroundColor: color ?? Theme.of(context).cardColor,
-          shape: RoundedRectangleBorder(borderRadius: xTheme.dialogBorderRadius),
+          shape:
+              RoundedRectangleBorder(borderRadius: xTheme.dialogBorderRadius),
           title: DefaultTextStyle(
-              style: Theme.of(context).textTheme.titleSmall ?? const TextStyle(),
-              child: title
-          ),
+              style:
+                  Theme.of(context).textTheme.titleSmall ?? const TextStyle(),
+              child: title),
           content: DefaultTextStyle(
-              style: Theme.of(context).textTheme.bodyMedium ?? const TextStyle(),
-              child: content ?? const SizedBox()
-          ),
+              style:
+                  Theme.of(context).textTheme.bodyMedium ?? const TextStyle(),
+              child: content ?? const SizedBox()),
           actions: <Widget>[
             TextButton(
               onPressed: () {

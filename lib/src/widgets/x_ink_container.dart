@@ -12,7 +12,6 @@ import "../../x_containers.dart";
 /// On top of the container, a ink behavior is implemented to allow tapping with
 /// splash animations.
 class XInkContainer extends StatelessWidget {
-
   // VARIABLES =================================================================
 
   // COLORS --------------------------------------------------------------------
@@ -65,7 +64,8 @@ class XInkContainer extends StatelessWidget {
   ///
   /// Defaults to [xTheme.borderDecoration].
   final BoxBorder? borderDecoration;
-  BoxBorder? get _borderDecoration => borderDecoration ?? xTheme.borderDecoration;
+  BoxBorder? get _borderDecoration =>
+      borderDecoration ?? xTheme.borderDecoration;
 
   /// An optional BoxConstraints setting.
   ///
@@ -126,7 +126,6 @@ class XInkContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Padding(
       padding: _margin,
 
@@ -156,9 +155,7 @@ class XInkContainer extends StatelessWidget {
             padding: _padding,
             constraints: _constraints,
             decoration: BoxDecoration(
-              color: _gradient != null
-                  ? null
-                  : Colors.transparent,
+              color: _gradient != null ? null : Colors.transparent,
               gradient: _gradient,
               borderRadius: _borderRadius,
               border: _borderDecoration,

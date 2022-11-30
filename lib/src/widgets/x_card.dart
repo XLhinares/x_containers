@@ -4,7 +4,6 @@ import "../../x_containers.dart";
 
 /// A custom [Card]-like widget to standardize the tiles within the app.
 class XCard extends StatelessWidget {
-
   // VARIABLES =================================================================
 
   // CHILDREN ------------------------------------------------------------------
@@ -26,13 +25,11 @@ class XCard extends StatelessWidget {
   /// The color of the card.
   final Color? color;
 
-
   /// Whether the card should cast a shadow.
   ///
   /// Defaults to [xTheme.enableShadow].
   final bool? enableShadow;
-  bool get _enableShadow => enableShadow
-      ?? xTheme.enableShadow;
+  bool get _enableShadow => enableShadow ?? xTheme.enableShadow;
 
   // LAYOUT --------------------------------------------------------------------
 
@@ -46,18 +43,18 @@ class XCard extends StatelessWidget {
   ///
   /// The default padding is computed from the density value.
   final EdgeInsetsGeometry? padding;
-  EdgeInsetsGeometry get _padding => padding
-      ?? EdgeInsets.symmetric(
+  EdgeInsetsGeometry get _padding =>
+      padding ??
+      EdgeInsets.symmetric(
         horizontal: _density,
-        vertical: _density/_densityRatio,
+        vertical: _density / _densityRatio,
       );
 
   /// An optional margin setting.
   ///
   /// The default margin is computed from the density value.
   final EdgeInsetsGeometry? margin;
-  EdgeInsetsGeometry get _margin => margin
-      ?? xTheme.margin;
+  EdgeInsetsGeometry get _margin => margin ?? xTheme.margin;
 
   /// A double managing the padding of the card.
   ///
@@ -100,7 +97,6 @@ class XCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return XInkContainer(
       margin: _margin,
       padding: _padding,
@@ -110,7 +106,6 @@ class XCard extends StatelessWidget {
       enableShadow: _enableShadow,
       child: Row(
         children: [
-
           // LEADING -----------------------------------------------------------
           leading ?? const SizedBox(),
 
@@ -125,7 +120,8 @@ class XCard extends StatelessWidget {
               children: [
                 DefaultTextStyle(
                   textAlign: TextAlign.start,
-                  style: Theme.of(context).textTheme.bodyMedium ?? const TextStyle(),
+                  style: Theme.of(context).textTheme.bodyMedium ??
+                      const TextStyle(),
                   child: title,
                 ),
                 Visibility(
@@ -135,7 +131,8 @@ class XCard extends StatelessWidget {
                 Visibility(
                   visible: subtitle != null,
                   child: DefaultTextStyle(
-                    style: Theme.of(context).textTheme.bodySmall ?? const TextStyle(),
+                    style: Theme.of(context).textTheme.bodySmall ??
+                        const TextStyle(),
                     child: subtitle ?? const SizedBox(),
                   ),
                 ),

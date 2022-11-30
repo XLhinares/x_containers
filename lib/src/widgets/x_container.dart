@@ -4,7 +4,6 @@ import "../../x_containers.dart";
 
 /// A custom container with a shadow!
 class XContainer extends StatelessWidget {
-
   // VARIABLES =================================================================
 
   // COLORS --------------------------------------------------------------------
@@ -57,7 +56,8 @@ class XContainer extends StatelessWidget {
   ///
   /// Defaults to [xTheme.borderDecoration].
   final BoxBorder? borderDecoration;
-  BoxBorder? get _borderDecoration => borderDecoration ?? xTheme.borderDecoration;
+  BoxBorder? get _borderDecoration =>
+      borderDecoration ?? xTheme.borderDecoration;
 
   /// An optional BoxConstraints setting.
   ///
@@ -105,8 +105,7 @@ class XContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    return  Padding(
+    return Padding(
       padding: _margin,
 
       // A Physical model to be able to cast a shadow.
@@ -117,7 +116,6 @@ class XContainer extends StatelessWidget {
         color: _gradient != null
             ? null
             : (color ?? Theme.of(context).colorScheme.primary),
-
         child: Container(
           alignment: _alignment,
           width: _width,

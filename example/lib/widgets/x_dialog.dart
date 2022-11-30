@@ -5,7 +5,6 @@ import "../globals.dart";
 
 /// An example for using the [XDialog] widget.
 class ExampleXDialog extends StatelessWidget {
-
   /// Returns a [ExampleXDialog] matching the given parameters.
   const ExampleXDialog({super.key});
 
@@ -13,7 +12,8 @@ class ExampleXDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all(Theme.of(context).colorScheme.primary),
+        backgroundColor:
+            MaterialStateProperty.all(Theme.of(context).colorScheme.primary),
       ),
       onPressed: () => XDialog.text(
         title: "Do you want to toggle dark mode on/off?",
@@ -21,7 +21,8 @@ class ExampleXDialog extends StatelessWidget {
         cancelText: "No",
         onValidate: () => toggleTheme(),
       ).show(context),
-      child: Text("Tap to display an [XDialog].",
+      child: Text(
+        "Tap to display an [XDialog].",
         style: Theme.of(context).textTheme.bodyMedium,
       ),
     );

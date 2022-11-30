@@ -9,7 +9,6 @@ import "../../x_containers.dart";
 /// It can be shown anywhere without passing the context thanks to the [Get]
 /// package.
 class XSnackbar {
-
   // VARIABLES =================================================================
 
   // CONTENTS ------------------------------------------------------------------
@@ -75,20 +74,21 @@ class XSnackbar {
     Duration? duration,
     double? maxWidth,
     void Function()? onUndo,
-  }) => XSnackbar(
-    title: title,
-    message: message,
-    titleStyle: titleStyle,
-    messageStyle: messageStyle,
-    leading: leading,
-    trailing: TextButton(
-      onPressed: onUndo,
-      child: const Text("Undo"),
-    ),
-    color: color,
-    duration: duration,
-    maxWidth: maxWidth,
-  );
+  }) =>
+      XSnackbar(
+        title: title,
+        message: message,
+        titleStyle: titleStyle,
+        messageStyle: messageStyle,
+        leading: leading,
+        trailing: TextButton(
+          onPressed: onUndo,
+          child: const Text("Undo"),
+        ),
+        color: color,
+        duration: duration,
+        maxWidth: maxWidth,
+      );
 
   /// Returns an instance of [XSnackbar] made for displaying mainly text.
   factory XSnackbar.text({
@@ -101,17 +101,18 @@ class XSnackbar {
     Color? color,
     Duration? duration,
     double? maxWidth,
-  }) => XSnackbar(
-    title: Text(title),
-    message: message == null ? null : Text(message),
-    titleStyle: titleStyle,
-    messageStyle: messageStyle,
-    leading: leading,
-    trailing: trailing,
-    color: color,
-    duration: duration,
-    maxWidth: maxWidth,
-  );
+  }) =>
+      XSnackbar(
+        title: Text(title),
+        message: message == null ? null : Text(message),
+        titleStyle: titleStyle,
+        messageStyle: messageStyle,
+        leading: leading,
+        trailing: trailing,
+        color: color,
+        duration: duration,
+        maxWidth: maxWidth,
+      );
 
   /// Returns an instance of [XSnackbar] made for displaying mainly text with an undo button.
   ///
@@ -126,55 +127,62 @@ class XSnackbar {
     Duration? duration,
     double? maxWidth,
     void Function()? onUndo,
-  }) => XSnackbar(
-    title: Text(title),
-    message: message == null ? null : Text(message),
-    titleStyle: titleStyle,
-    messageStyle: messageStyle,
-    leading: leading,
-    trailing: TextButton(
-      onPressed: onUndo,
-      child: const Text("Undo"),
-    ),
-    duration: duration,
-    color: color,
-    maxWidth: maxWidth,
-  );
+  }) =>
+      XSnackbar(
+        title: Text(title),
+        message: message == null ? null : Text(message),
+        titleStyle: titleStyle,
+        messageStyle: messageStyle,
+        leading: leading,
+        trailing: TextButton(
+          onPressed: onUndo,
+          child: const Text("Undo"),
+        ),
+        duration: duration,
+        color: color,
+        maxWidth: maxWidth,
+      );
 
   // METHODS ===================================================================
 
   /// Displays the snackbar on the screen.
-  void show (BuildContext context) => ScaffoldMessenger.of(context).showSnackBar(
-    SnackBar(
-      content: ListTile(
-        title: DefaultTextStyle(
-          style: titleStyle ?? Theme.of(context).textTheme.titleMedium ?? const TextStyle(),
-          child: title,
+  void show(BuildContext context) => ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: ListTile(
+            title: DefaultTextStyle(
+              style: titleStyle ??
+                  Theme.of(context).textTheme.titleMedium ??
+                  const TextStyle(),
+              child: title,
+            ),
+            subtitle: DefaultTextStyle(
+              style: messageStyle ??
+                  Theme.of(context).textTheme.bodyMedium ??
+                  const TextStyle(),
+              child: message ?? const SizedBox(),
+            ),
+            leading: leading == null
+                ? null
+                : Padding(
+                    padding: EdgeInsets.only(
+                      left: XLayout.paddingS,
+                    ),
+                    child: leading,
+                  ),
+            trailing: trailing,
+          ),
+          behavior: SnackBarBehavior.floating,
+          duration: duration ?? const Duration(seconds: 3),
+          padding: EdgeInsets.symmetric(
+            vertical: XLayout.paddingS,
+            horizontal: XLayout.paddingM,
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: xTheme.borderRadius,
+          ),
+          backgroundColor: color ?? Theme.of(context).cardColor,
+          width: min(MediaQuery.of(context).size.width - 2 * XLayout.paddingS,
+              maxWidth ?? double.infinity),
         ),
-        subtitle: DefaultTextStyle(
-          style: messageStyle ?? Theme.of(context).textTheme.bodyMedium ?? const TextStyle(),
-          child: message ?? const SizedBox(),
-        ),
-        leading: leading == null
-            ? null
-            : Padding(
-          padding: EdgeInsets.only(left: XLayout.paddingS,),
-          child: leading,
-        ),
-        trailing: trailing,
-      ),
-      behavior: SnackBarBehavior.floating,
-      duration: duration ?? const Duration(seconds: 3),
-      padding: EdgeInsets.symmetric(
-        vertical: XLayout.paddingS,
-        horizontal: XLayout.paddingM,
-      ),
-      shape: RoundedRectangleBorder(
-        borderRadius: xTheme.borderRadius,
-      ),
-      backgroundColor: color ?? Theme.of(context).cardColor,
-      width: min(MediaQuery.of(context).size.width - 2 * XLayout.paddingS, maxWidth ?? double.infinity),
-    ),
-  );
-
+      );
 }

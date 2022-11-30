@@ -25,7 +25,7 @@ ThemeData darkTheme = xTheme.getTheme(
 );
 
 /// Toggles between light and dark mode
-void toggleTheme () {
+void toggleTheme() {
   if (Get.isDarkMode) {
     Get.changeThemeMode(ThemeMode.light);
   } else {
