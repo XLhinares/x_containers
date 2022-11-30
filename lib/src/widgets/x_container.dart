@@ -1,5 +1,4 @@
 import "package:flutter/material.dart";
-import "package:get/get.dart";
 
 import "../../x_containers.dart";
 
@@ -111,31 +110,26 @@ class XContainer extends StatelessWidget {
       padding: _margin,
 
       // A Physical model to be able to cast a shadow.
-      child: PhysicalModel(
-        color: Colors.transparent,
+      child: Material(
         borderRadius: _borderRadius,
         elevation: _enableShadow ? 5 : 0,
-        shadowColor: shadowColor ?? context.theme.shadowColor,
+        shadowColor: shadowColor ?? Theme.of(context).shadowColor,
+        color: _gradient != null
+            ? null
+            : (color ?? Theme.of(context).colorScheme.primary),
 
-        // A material ancestor for the InkWell
-        child: Material(
-          borderRadius: _borderRadius,
-          child: Container(
-            alignment: _alignment,
-            width: _width,
-            height: _height,
-            padding: _padding,
-            constraints: _constraints,
-            decoration: BoxDecoration(
-              color: _gradient != null
-                  ? null
-                  : (color ?? context.theme.colorScheme.primary),
-              gradient: _gradient,
-              borderRadius: _borderRadius,
-              border: _borderDecoration,
-            ),
-            child: _child,
+        child: Container(
+          alignment: _alignment,
+          width: _width,
+          height: _height,
+          padding: _padding,
+          constraints: _constraints,
+          decoration: BoxDecoration(
+            gradient: _gradient,
+            borderRadius: _borderRadius,
+            border: _borderDecoration,
           ),
+          child: _child,
         ),
       ),
     );

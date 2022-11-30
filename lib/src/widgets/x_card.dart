@@ -1,5 +1,4 @@
 import "package:flutter/material.dart";
-import "package:get/get.dart";
 
 import "../../x_containers.dart";
 
@@ -107,7 +106,7 @@ class XCard extends StatelessWidget {
       padding: _padding,
       borderRadius: _borderRadius,
       onTap: onTap,
-      color: color ?? context.theme.cardColor,
+      color: color ?? Theme.of(context).cardColor,
       enableShadow: _enableShadow,
       child: Row(
         children: [
@@ -126,7 +125,7 @@ class XCard extends StatelessWidget {
               children: [
                 DefaultTextStyle(
                   textAlign: TextAlign.start,
-                  style: Get.textTheme.bodyMedium ?? const TextStyle(),
+                  style: Theme.of(context).textTheme.bodyMedium ?? const TextStyle(),
                   child: title,
                 ),
                 Visibility(
@@ -136,7 +135,7 @@ class XCard extends StatelessWidget {
                 Visibility(
                   visible: subtitle != null,
                   child: DefaultTextStyle(
-                    style: Get.textTheme.bodySmall ?? const TextStyle(),
+                    style: Theme.of(context).textTheme.bodySmall ?? const TextStyle(),
                     child: subtitle ?? const SizedBox(),
                   ),
                 ),

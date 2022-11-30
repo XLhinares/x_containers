@@ -1,3 +1,10 @@
+# 1.0.0
+
+- `DELETED`: Uses of the `get` package, because it made XContainers not work with non-get apps. 
+- `DELETED`: [PhysicalModel] from [XContainer] and [XInkContainer] since the [Material] widget handles the same properties. 
+- `DELETED`: Temporarily got rid of the custom [TextTheme] generation by the [xTheme] object, as it caused issues during theme changes.
+- `IMPROVED`: Generation of a [ThemeData] by the [xTheme] object.
+
 ### 0.2.3
 
 - `REFACTORED`: Using relative imports.

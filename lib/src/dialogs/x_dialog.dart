@@ -1,7 +1,6 @@
 import "dart:ui";
 
 import "package:flutter/material.dart";
-import "package:get/get.dart";
 
 import "../../x_containers.dart";
 
@@ -88,27 +87,27 @@ class XDialog {
           sigmaY: backgroundBlur,
         ),
         child: AlertDialog(
-          backgroundColor: color ?? context.theme.cardColor,
+          backgroundColor: color ?? Theme.of(context).cardColor,
           shape: RoundedRectangleBorder(borderRadius: xTheme.dialogBorderRadius),
           title: DefaultTextStyle(
-              style: Get.textTheme.titleSmall!,
+              style: Theme.of(context).textTheme.titleSmall ?? const TextStyle(),
               child: title
           ),
           content: DefaultTextStyle(
-              style: Get.textTheme.bodyMedium!,
+              style: Theme.of(context).textTheme.bodyMedium ?? const TextStyle(),
               child: content ?? const SizedBox()
           ),
           actions: <Widget>[
             TextButton(
               onPressed: () {
-                Get.back();
+                Navigator.of(context).pop();
                 onCancel?.call();
               },
               child: Text(cancelText ?? "Cancel"),
             ),
             TextButton(
               onPressed: () {
-                Get.back();
+                Navigator.of(context).pop();
                 onValidate?.call();
               },
               child: Text(validateText ?? "Okay"),

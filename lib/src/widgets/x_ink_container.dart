@@ -1,5 +1,4 @@
 import "package:flutter/material.dart";
-import "package:get/get.dart";
 
 import "../../x_containers.dart";
 
@@ -132,45 +131,39 @@ class XInkContainer extends StatelessWidget {
       padding: _margin,
 
       // A Physical model to be able to cast a shadow.
-      child: PhysicalModel(
-        color: Colors.transparent,
+      child: Material(
         borderRadius: _borderRadius,
         elevation: _enableShadow ? 5 : 0,
-        shadowColor: shadowColor ?? context.theme.shadowColor,
+        shadowColor: shadowColor ?? Theme.of(context).shadowColor,
+        color: _gradient != null
+            ? null
+            : (color ?? Theme.of(context).colorScheme.primary),
 
-        // A material ancestor for the InkWell
-        child: Material(
-          color: _gradient != null
-              ? null
-              : (color ?? context.theme.colorScheme.primary),
+        // A tappable InkWell
+        child: InkWell(
+          onTap: onTap,
+          splashColor: _enableSplash
+              ? (splashColor ?? Theme.of(context).splashColor)
+              : Colors.transparent,
+          highlightColor: _enableSplash ? null : Colors.transparent,
           borderRadius: _borderRadius,
 
-          // A tappable InkWell
-          child: InkWell(
-            onTap: onTap,
-            splashColor: _enableSplash
-                ? (splashColor ?? context.theme.splashColor)
-                : Colors.transparent,
-            highlightColor: _enableSplash ? null : Colors.transparent,
-            borderRadius: _borderRadius,
-
-            // The actual container
-            child: Container(
-              alignment: _alignment,
-              width: _width,
-              height: _height,
-              padding: _padding,
-              constraints: _constraints,
-              decoration: BoxDecoration(
-                color: _gradient != null
-                    ? null
-                    : Colors.transparent,
-                gradient: _gradient,
-                borderRadius: _borderRadius,
-                border: _borderDecoration,
-              ),
-              child: _child,
+          // The actual container
+          child: Container(
+            alignment: _alignment,
+            width: _width,
+            height: _height,
+            padding: _padding,
+            constraints: _constraints,
+            decoration: BoxDecoration(
+              color: _gradient != null
+                  ? null
+                  : Colors.transparent,
+              gradient: _gradient,
+              borderRadius: _borderRadius,
+              border: _borderDecoration,
             ),
+            child: _child,
           ),
         ),
       ),

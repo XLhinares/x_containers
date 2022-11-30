@@ -1,5 +1,6 @@
+import "dart:math";
+
 import "package:flutter/material.dart";
-import "package:get/get.dart";
 
 import "../../x_containers.dart";
 
@@ -73,7 +74,7 @@ class XSnackbar {
     Color? color,
     Duration? duration,
     double? maxWidth,
-    void Function()? onUndo
+    void Function()? onUndo,
   }) => XSnackbar(
     title: title,
     message: message,
@@ -124,7 +125,7 @@ class XSnackbar {
     Color? color,
     Duration? duration,
     double? maxWidth,
-    void Function()? onUndo
+    void Function()? onUndo,
   }) => XSnackbar(
     title: Text(title),
     message: message == null ? null : Text(message),
@@ -136,41 +137,43 @@ class XSnackbar {
       child: const Text("Undo"),
     ),
     duration: duration,
+    color: color,
     maxWidth: maxWidth,
   );
 
   // METHODS ===================================================================
 
   /// Displays the snackbar on the screen.
-  void show () => Get.showSnackbar(
-    GetSnackBar(
-      titleText: ListTile(
+  void show (BuildContext context) => ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      content: ListTile(
         title: DefaultTextStyle(
-          style: titleStyle ?? Get.textTheme.titleMedium ?? const TextStyle(),
+          style: titleStyle ?? Theme.of(context).textTheme.titleMedium ?? const TextStyle(),
           child: title,
         ),
         subtitle: DefaultTextStyle(
-          style: messageStyle ?? Get.textTheme.bodyMedium ?? const TextStyle(),
+          style: messageStyle ?? Theme.of(context).textTheme.bodyMedium ?? const TextStyle(),
           child: message ?? const SizedBox(),
+        ),
+        leading: leading == null
+            ? null
+            : Padding(
+          padding: EdgeInsets.only(left: XLayout.paddingS,),
+          child: leading,
         ),
         trailing: trailing,
       ),
-      messageText: const SizedBox(),
+      behavior: SnackBarBehavior.floating,
       duration: duration ?? const Duration(seconds: 3),
-      margin: EdgeInsets.all(XLayout.paddingS),
       padding: EdgeInsets.symmetric(
         vertical: XLayout.paddingS,
         horizontal: XLayout.paddingM,
       ),
-      borderRadius: XLayout.paddingS,
-      backgroundColor: color ?? Get.theme.cardColor,
-      icon: leading == null
-          ? null
-          : Padding(
-        padding: EdgeInsets.only(left: XLayout.paddingS,),
-        child: leading,
+      shape: RoundedRectangleBorder(
+        borderRadius: xTheme.borderRadius,
       ),
-      maxWidth: maxWidth,
+      backgroundColor: color ?? Theme.of(context).cardColor,
+      width: min(MediaQuery.of(context).size.width - 2 * XLayout.paddingS, maxWidth ?? double.infinity),
     ),
   );
 
