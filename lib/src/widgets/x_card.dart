@@ -14,8 +14,8 @@ class XCard extends StatelessWidget {
   /// The title of the card.
   final Widget title;
 
-  /// The (optional) subtitle of the card.
-  final Widget? subtitle;
+  /// The (optional) content of the card.
+  final Widget? content;
 
   /// An (optional) widget to be displayed on the right of the card.
   final Widget? trailing;
@@ -77,11 +77,21 @@ class XCard extends StatelessWidget {
   // CONSTRUCTOR ===============================================================
 
   /// Returns an instance of [XCard] matching the given parameters.
+  ///
+  /// PARAMETERS:
+  ///
+  /// > - [title], [content], [leading] and [trailing] are widgets.
+  /// > - [color], [margin] and [padding] work as usual.
+  /// > - [enableShadow] decides whether the card casts a shadow.
+  /// > - [borderRadius] describes the intensity of the curvature of the corners.
+  /// > - [density] is the space between the different elements (title, leading, contents, etc.).
+  /// > - [densityRatio] is the ratio of horizontal density over vertical density (for instance, a value of 2 will make the internal padding twice as large as it is tall).
+  /// > - [onTap] is a function called when the card is tapped.
   const XCard({
     Key? key,
-    this.leading,
     required this.title,
-    this.subtitle,
+    this.content,
+    this.leading,
     this.trailing,
     this.color,
     this.enableShadow,
@@ -125,15 +135,15 @@ class XCard extends StatelessWidget {
                   child: title,
                 ),
                 Visibility(
-                  visible: subtitle != null,
+                  visible: content != null,
                   child: SizedBox(height: _density / _densityRatio),
                 ),
                 Visibility(
-                  visible: subtitle != null,
+                  visible: content != null,
                   child: DefaultTextStyle(
                     style: Theme.of(context).textTheme.bodySmall ??
                         const TextStyle(),
-                    child: subtitle ?? const SizedBox(),
+                    child: content ?? const SizedBox(),
                   ),
                 ),
               ],

@@ -86,7 +86,7 @@ class XContainer extends StatelessWidget {
     this.color,
     this.gradient,
     this.shadowColor,
-    this.enableShadow = true,
+    this.enableShadow,
     // shape
     this.borderRadius,
     this.borderDecoration,

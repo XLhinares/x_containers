@@ -1,29 +1,30 @@
-import "dart:math";
-
 import "package:flutter/material.dart";
 
 import "../../x_containers.dart";
 
-/// A custom snackbar matching the theme of the app.
-///
-/// It can be shown anywhere without passing the context thanks to the [Get]
-/// package.
+/// A custom snackbar matching the style of XContainers.
 class XSnackbar {
   // VARIABLES =================================================================
 
   // CONTENTS ------------------------------------------------------------------
 
-  /// The title of the snackbar: sums up the message.
+  /// The title of the snackbar.
+  ///
+  /// It should summarize the contents.
   final Widget title;
 
   /// A more extensive description of the snackbar.
-  final Widget? message;
+  final Widget? content;
 
   /// An optional [TextStyle] to customize the title.
+  ///
+  /// It is applied to all [Text] children as default style.
   final TextStyle? titleStyle;
 
-  /// An optional [TextStyle] to customize the message.
-  final TextStyle? messageStyle;
+  /// An optional [TextStyle] to customize the contents.
+  ///
+  /// It is applied to all [Text] children as default style.
+  final TextStyle? contentStyle;
 
   /// An optional widget to display to the right of the snackbar.
   final Widget? trailing;
@@ -44,46 +45,65 @@ class XSnackbar {
   // BEHAVIOR ------------------------------------------------------------------
 
   /// The duration for which the widget is displayed.
-  final Duration? duration;
+  final Duration duration;
 
   // CONSTRUCTOR ===============================================================
 
   /// Returns a [XSnackbar] instance which can be displayed via the [show] method.
+  ///
+  /// PARAMETERS:
+  /// > - [title], [content], [leading] and [trailing] are widgets.
+  /// > - [titleStyle] and [contentStyle] are the default text style for [Text] widgets inside [title] and [content].
+  /// > - [color] is the background color of the snackbar.
+  /// > - [maxWidth] is the maximum allowed width of the Snackbar;
+  /// > if null, the Snackbar takes the whole screen minus a small padding.
+  /// > - [duration] is the time during which the snackbar is displayed.
   const XSnackbar({
     required this.title,
-    this.message,
+    this.content,
     this.titleStyle,
-    this.messageStyle,
+    this.contentStyle,
     this.leading,
     this.trailing,
     this.color,
     this.maxWidth,
-    this.duration,
+    this.duration = const Duration(seconds: 4),
   });
 
   /// Returns an instance of [XSnackbar] with an undo button.
   ///
   /// The undo button replaces the trailing widget so none can be set.
+  ///
+  /// PARAMETERS:
+  /// > - [title], [content] and [leading] are widgets.
+  /// > - [titleStyle] and [contentStyle] are the default text style for [Text] widgets inside [title] and [content].
+  /// > - [color] is the background color of the snackbar.
+  /// > - [maxWidth] is the maximum allowed width of the Snackbar;
+  /// > if null, the Snackbar takes the whole screen minus a small padding.
+  /// > - [duration] is the time during which the snackbar is displayed.
+  /// > - [undoLabel] is the string displayed on the "undo" button.
+  /// > - [onUndo] is a callback called when the "undo" button is pressed.
   factory XSnackbar.withUndo({
     required Widget title,
-    Widget? message,
+    Widget? content,
     TextStyle? titleStyle,
-    TextStyle? messageStyle,
+    TextStyle? contentStyle,
     Widget? leading,
     Color? color,
-    Duration? duration,
+    Duration duration = const Duration(seconds: 4),
     double? maxWidth,
+    String undoLabel = "Undo",
     void Function()? onUndo,
   }) =>
       XSnackbar(
         title: title,
-        message: message,
+        content: content,
         titleStyle: titleStyle,
-        messageStyle: messageStyle,
+        contentStyle: contentStyle,
         leading: leading,
         trailing: TextButton(
           onPressed: onUndo,
-          child: const Text("Undo"),
+          child: Text(undoLabel),
         ),
         color: color,
         duration: duration,
@@ -91,22 +111,31 @@ class XSnackbar {
       );
 
   /// Returns an instance of [XSnackbar] made for displaying mainly text.
+  ///
+  /// PARAMETERS:
+  /// > - [title] and [content] are strings.
+  /// > - [titleStyle] and [contentStyle] are the text styles used for [title] and [content].
+  /// > - [leading] and [trailing] are widgets.
+  /// > - [color] is the background color of the snackbar.
+  /// > - [maxWidth] is the maximum allowed width of the Snackbar;
+  /// > if null, the Snackbar takes the whole screen minus a small padding.
+  /// > - [duration] is the time during which the snackbar is displayed.
   factory XSnackbar.text({
     required String title,
-    String? message,
+    String? content,
     TextStyle? titleStyle,
-    TextStyle? messageStyle,
+    TextStyle? contentStyle,
     Widget? leading,
     Widget? trailing,
     Color? color,
-    Duration? duration,
+    Duration duration = const Duration(seconds: 4),
     double? maxWidth,
   }) =>
       XSnackbar(
         title: Text(title),
-        message: message == null ? null : Text(message),
+        content: content == null ? null : Text(content),
         titleStyle: titleStyle,
-        messageStyle: messageStyle,
+        contentStyle: contentStyle,
         leading: leading,
         trailing: trailing,
         color: color,
@@ -117,26 +146,38 @@ class XSnackbar {
   /// Returns an instance of [XSnackbar] made for displaying mainly text with an undo button.
   ///
   /// The undo button replaces the trailing widget so none can be set.
+  ///
+  /// PARAMETERS:
+  /// > - [title] and [content] are strings.
+  /// > - [titleStyle] and [contentStyle] are the text styles used for [title] and [content].
+  /// > - [leading] is a widget.
+  /// > - [color] is the background color of the snackbar.
+  /// > - [maxWidth] is the maximum allowed width of the Snackbar;
+  /// > if null, the Snackbar takes the whole screen minus a small padding.
+  /// > - [duration] is the time during which the snackbar is displayed.
+  /// > - [undoLabel] is the string displayed on the "undo" button.
+  /// > - [onUndo] is a callback called when the "undo" button is pressed.
   factory XSnackbar.textWithUndo({
     required String title,
-    String? message,
+    String? content,
     TextStyle? titleStyle,
-    TextStyle? messageStyle,
+    TextStyle? contentStyle,
     Widget? leading,
     Color? color,
-    Duration? duration,
+    Duration duration = const Duration(seconds: 4),
     double? maxWidth,
+    String undoLabel = "Undo",
     void Function()? onUndo,
   }) =>
       XSnackbar(
         title: Text(title),
-        message: message == null ? null : Text(message),
+        content: content == null ? null : Text(content),
         titleStyle: titleStyle,
-        messageStyle: messageStyle,
+        contentStyle: contentStyle,
         leading: leading,
         trailing: TextButton(
           onPressed: onUndo,
-          child: const Text("Undo"),
+          child: Text(undoLabel),
         ),
         duration: duration,
         color: color,
@@ -156,10 +197,10 @@ class XSnackbar {
               child: title,
             ),
             subtitle: DefaultTextStyle(
-              style: messageStyle ??
+              style: contentStyle ??
                   Theme.of(context).textTheme.bodyMedium ??
                   const TextStyle(),
-              child: message ?? const SizedBox(),
+              child: content ?? const SizedBox(),
             ),
             leading: leading == null
                 ? null
@@ -172,7 +213,7 @@ class XSnackbar {
             trailing: trailing,
           ),
           behavior: SnackBarBehavior.floating,
-          duration: duration ?? const Duration(seconds: 3),
+          duration: duration,
           padding: EdgeInsets.symmetric(
             vertical: XLayout.paddingS,
             horizontal: XLayout.paddingM,
@@ -181,8 +222,8 @@ class XSnackbar {
             borderRadius: xTheme.borderRadius,
           ),
           backgroundColor: color ?? Theme.of(context).cardColor,
-          width: min(MediaQuery.of(context).size.width - 2 * XLayout.paddingS,
-              maxWidth ?? double.infinity),
+          width: maxWidth ??
+              MediaQuery.of(context).size.width - 2 * XLayout.paddingS,
         ),
       );
 }

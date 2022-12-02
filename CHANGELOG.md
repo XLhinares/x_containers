@@ -1,4 +1,15 @@
-## 1.0.3-pre
+## 1.1.0
+
+- `ADDED`: a makefile containing a few utility commands.
+- `IMPROVED`: The documentation comments on the class constructors.
+- `IMPROVED`: The [XDialog] buttons turn invisible if their label is set to [null].
+
+- `BREAKING`: In [XSnackbar], the field [message] is renamed to [content] to match the naming of other classes.
+- `BREAKING`: In [XCard], the field [subtitle] is renamed to [content] to match the naming of other classes.
+
+- `CHANGED`: The example to match the breaking changes.
+
+## 1.0.3-dev.1
 
 - `IMPROVED`: The README for even better legibility.
 - `IMPROVED`: Using asset image from github.
@@ -82,6 +93,7 @@ Keywords:
 - `CHANGED`: When you switch some code for different code (for instance, if we decided to radically change the way the movies are displayed).
 - `DELETED`: When you remove some feature or code.
 - `REFACTORED`: When you change file names or a linting rule.
+- `BREAKING`: Any breaking change.
 
 ## WARNING
 
