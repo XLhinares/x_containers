@@ -1,4 +1,4 @@
-library x_container;
+library x_containers;
 
 import "src/settings/settings.dart";
 

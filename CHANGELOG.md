@@ -1,3 +1,7 @@
+## 1.1.1
+
+- `CHANGED`: Fixed library name (from `x_container` to `x_containers`).
+
 ## 1.1.0
 
 - `ADDED`: a makefile containing a few utility commands.
