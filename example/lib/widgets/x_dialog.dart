@@ -11,7 +11,7 @@ class ExampleXDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      style: ButtonStyle(
+      style: const ButtonStyle().copyWith(
         backgroundColor:
             MaterialStateProperty.all(Theme.of(context).colorScheme.primary),
       ),
@@ -21,9 +21,8 @@ class ExampleXDialog extends StatelessWidget {
         cancelText: "No",
         onValidate: () => toggleTheme(),
       ).show(context),
-      child: Text(
+      child: const Text(
         "Tap to display an [XDialog].",
-        style: Theme.of(context).textTheme.bodyMedium,
       ),
     );
   }

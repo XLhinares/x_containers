@@ -6,7 +6,7 @@ import "../../x_containers.dart";
 ///
 /// It has the same properties as a regular container with the exception the some
 /// decorations can be set directly without using a [BoxDecoration].
-/// Obviously, these decorations will be overridden if the property [decoration]
+/// However, these decorations will be overridden if the property [decoration]
 /// is provided.
 ///
 /// On top of the container, a ink behavior is implemented to allow tapping with
@@ -16,86 +16,71 @@ class XInkContainer extends StatelessWidget {
 
   // COLORS --------------------------------------------------------------------
 
-  /// The main color of the box.
+  /// {@macro x_containers.docs.color}
   final Color? color;
 
-  /// An optional gradient to color the box.
-  ///
-  /// If it is not null, then it overrides the color.
+  /// {@macro x_containers.docs.gradient}
   final Gradient? gradient;
   Gradient? get _gradient => gradient;
 
-  /// The color of the shadow of the box.
+  /// {@macro x_containers.docs.shadowColor}
   final Color? shadowColor;
 
-  /// Whether the box should have a shadow.
-  ///
-  /// Defaults to [xTheme.enableShadow].
+  /// {@macro x_containers.docs.enableShadow}
   final bool? enableShadow;
   bool get _enableShadow => enableShadow ?? xTheme.enableShadow;
 
   // LAYOUT --------------------------------------------------------------------
 
-  /// An optional alignment setting.
-  ///
-  /// Defaults to [xTheme.alignment].
+  /// {@macro x_containers.docs.alignment}
   final AlignmentGeometry? alignment;
   AlignmentGeometry? get _alignment => alignment ?? xTheme.alignment;
 
-  /// An optional padding setting.
-  ///
-  /// Defaults to [xTheme.padding].
+  /// {@macro x_containers.docs.padding}
   final EdgeInsetsGeometry? padding;
   EdgeInsetsGeometry get _padding => padding ?? xTheme.padding;
 
-  /// An optional margin setting.
-  ///
-  /// Defaults to [xTheme.margin].
+  /// {@macro x_containers.docs.margin}
   final EdgeInsetsGeometry? margin;
   EdgeInsetsGeometry get _margin => margin ?? xTheme.margin;
 
-  /// An optional BorderRadius setting.
-  ///
-  /// Defaults to [xTheme.borderRadius].
+  /// {@macro x_containers.docs.borderRadius}
   final BorderRadius? borderRadius;
   BorderRadius get _borderRadius => borderRadius ?? xTheme.borderRadius;
 
-  /// An optional BorderDecoration setting.
-  ///
-  /// Defaults to [xTheme.borderDecoration].
+  /// {@macro x_containers.docs.borderDecoration}
   final BoxBorder? borderDecoration;
   BoxBorder? get _borderDecoration =>
       borderDecoration ?? xTheme.borderDecoration;
 
-  /// An optional BoxConstraints setting.
-  ///
-  /// If not specified, there is no constraint.
+  /// {@macro x_containers.docs.constraints}
   final BoxConstraints? constraints;
   BoxConstraints? get _constraints => constraints;
 
-  /// The optional horizontal extent of the container.
+  /// {@macro x_containers.docs.width}
   final double? width;
   double? get _width => width;
 
-  /// The optional vertical extent of the container
+  /// {@macro x_containers.docs.height}
   final double? height;
   double? get _height => height;
 
-  /// The child to build in the box.
+  /// {@macro x_containers.docs.child}
   final Widget? child;
   Widget? get _child => child;
 
   // INTERACTIVITY -------------------------------------------------------------
 
-  /// An optional behavior when the container is tapped on.
+  /// {@macro x_containers.docs.onTap}
   final void Function()? onTap;
 
-  /// A splash color to paint when the container is tapped.
+  /// {@macro x_containers.docs.onLongPress}
+  final void Function()? onLongPress;
+
+  /// {@macro x_containers.docs.splashColor}
   final Color? splashColor;
 
-  /// Whether the container should "splash" when tapped on.
-  ///
-  /// Defaults to [xTheme.enableSplash].
+  /// {@macro x_containers.docs.enableSplash}
   final bool? enableSplash;
   bool get _enableSplash => enableSplash ?? xTheme.enableSplash;
 
@@ -118,6 +103,7 @@ class XInkContainer extends StatelessWidget {
     this.borderDecoration,
     this.enableShadow,
     this.onTap,
+    this.onLongPress,
     this.enableSplash,
     this.splashColor,
   }) : super(key: key);

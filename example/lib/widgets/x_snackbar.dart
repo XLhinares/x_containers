@@ -15,6 +15,7 @@ class ExampleXSnackbar extends StatelessWidget {
       ),
       onPressed: () => XSnackbar.text(
         title: "Here it is :)",
+        content: "You can add some more text if you'd like.",
       ).show(context),
       child: Text(
         "Tap to display an [XSnackbar].",

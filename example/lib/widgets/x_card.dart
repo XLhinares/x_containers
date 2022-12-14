@@ -16,7 +16,7 @@ class ExampleXCard extends StatelessWidget {
         size: XLayout.paddingL,
       ),
       title: const Text("This is an [XCard]."),
-      subtitle:
+      content:
           const Text("It works similarly to a [ListTile] within a [Card]."),
     );
   }
