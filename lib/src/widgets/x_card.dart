@@ -22,20 +22,16 @@ class XCard extends StatelessWidget {
 
   // COLOR ---------------------------------------------------------------------
 
-  /// The color of the card.
+  /// {@macro x_containers.docs.color}
   final Color? color;
 
-  /// Whether the card should cast a shadow.
-  ///
-  /// Defaults to [xTheme.enableShadow].
+  /// {@macro x_containers.docs.enableShadow}
   final bool? enableShadow;
   bool get _enableShadow => enableShadow ?? xTheme.enableShadow;
 
   // LAYOUT --------------------------------------------------------------------
 
-  /// An optional BorderRadius setting.
-  ///
-  /// Defaults to [xTheme.borderRadius].
+  /// {@macro x_containers.docs.borderRadius}
   final BorderRadius? borderRadius;
   BorderRadius get _borderRadius => borderRadius ?? xTheme.borderRadius;
 
@@ -50,13 +46,11 @@ class XCard extends StatelessWidget {
         vertical: _density / _densityRatio,
       );
 
-  /// An optional margin setting.
-  ///
-  /// The default margin is computed from the density value.
+  /// {@macro x_containers.docs.margin}
   final EdgeInsetsGeometry? margin;
   EdgeInsetsGeometry get _margin => margin ?? xTheme.margin;
 
-  /// A double managing the padding of the card.
+  /// A double managing the padding between the elements of the card.
   ///
   /// It has an impact on how close the children fit within the card.
   final double? density;
@@ -71,8 +65,11 @@ class XCard extends StatelessWidget {
 
   // INTERACTIVITY -------------------------------------------------------------
 
-  /// An (optional) functional specifying the behavior of the card when tapped.
+  /// {@macro x_containers.docs.onTap}
   final void Function()? onTap;
+
+  /// {@macro x_containers.docs.onLongPress}
+  final void Function()? onLongPress;
 
   // CONSTRUCTOR ===============================================================
 
@@ -101,6 +98,7 @@ class XCard extends StatelessWidget {
     this.density,
     this.densityRatio,
     this.onTap,
+    this.onLongPress,
   }) : super(key: key);
 
   // BUILD =====================================================================
@@ -109,53 +107,18 @@ class XCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return XInkContainer(
       margin: _margin,
-      padding: _padding,
       borderRadius: _borderRadius,
       onTap: onTap,
       color: color ?? Theme.of(context).cardColor,
       enableShadow: _enableShadow,
-      child: Row(
-        children: [
-          // LEADING -----------------------------------------------------------
-          leading ?? const SizedBox(),
-
-          // SPACING -----------------------------------------------------------
-          SizedBox(width: leading == null ? 0 : _density),
-
-          // MAIN BOX ----------------------------------------------------------
-          Expanded(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                DefaultTextStyle(
-                  textAlign: TextAlign.start,
-                  style: Theme.of(context).textTheme.bodyMedium ??
-                      const TextStyle(),
-                  child: title,
-                ),
-                Visibility(
-                  visible: content != null,
-                  child: SizedBox(height: _density / _densityRatio),
-                ),
-                Visibility(
-                  visible: content != null,
-                  child: DefaultTextStyle(
-                    style: Theme.of(context).textTheme.bodySmall ??
-                        const TextStyle(),
-                    child: content ?? const SizedBox(),
-                  ),
-                ),
-              ],
-            ),
-          ),
-
-          // SPACING -----------------------------------------------------------
-          SizedBox(width: trailing == null ? 0 : _density),
-
-          // TRAILING ----------------------------------------------------------
-          trailing ?? const SizedBox(),
-        ],
+      child: XListTile(
+        title: title,
+        content: content,
+        leading: leading,
+        trailing: trailing,
+        margin: _padding,
+        density: density,
+        densityRatio: densityRatio,
       ),
     );
   }

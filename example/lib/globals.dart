@@ -3,7 +3,7 @@ import "package:get/get.dart";
 import "package:x_containers/x_containers.dart";
 
 /// A preset theme for light mode.
-ThemeData lightMode = xTheme.getTheme(
+ThemeData lightTheme = xTheme.getTheme(
   mode: ThemeMode.light,
   primary: const Color(0xFFB4B8AB),
   secondary: const Color(0xFF284B63),
@@ -11,6 +11,11 @@ ThemeData lightMode = xTheme.getTheme(
   backgroundAlt: const Color(0xFFEEF0EB),
   cardColor: const Color(0xFFB4B8AB),
   containerColor: const Color(0xFFB4B8AB),
+  textTheme: TextTheme(
+    titleMedium: const TextStyle().copyWith(
+        fontWeight: FontWeight.w700, fontStyle: FontStyle.italic, fontSize: 16),
+    bodyMedium: const TextStyle().copyWith(fontSize: 14),
+  ),
 );
 
 /// A preset theme for dark mode.

@@ -1,3 +1,13 @@
+## 1.2.0
+
+- `ADDED`: [XListTile] as a way to have a box-less reusable tile layout.
+- `ADDED`: A preset [TextTheme] to [xTheme.getTheme] that can be fully or partially overridden.
+- `CHANGED`: [XCard] and [XSnackbar] use [XListTile].
+- `CHANGED`: The documentation which is now handled in part by macros.
+- `CHANGED`: The example to showcase changing the text theme through [xTheme].
+
+- `BREAKING`: [XSnackbar] doesn't use the [titleStyle] and [contentStyle] properties which are handled by the text theme.
+
 ## 1.1.1
 
 - `CHANGED`: Fixed library name (from `x_container` to `x_containers`).

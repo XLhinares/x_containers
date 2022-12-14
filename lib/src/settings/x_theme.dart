@@ -7,8 +7,8 @@ import "../../x_containers.dart";
 
 /// A singleton managing the default settings of the XContainer package.
 ///
-/// It allows to change the default properties of all the widgets in
-/// this package at once.
+/// It allows to change the default properties of all the widgets in this
+/// package at once.
 /// The default colors can be configured as well; if they are not set, the theme
 /// colors are used.
 ///
@@ -191,61 +191,59 @@ class XTheme {
     ExpansionTileThemeData? expansionTileTheme,
   }) {
     final bool isDarkMode = mode == ThemeMode.dark;
-    final Color textColor = isDarkMode ? Colors.white : Colors.black87;
+    final Color textColor = isDarkMode ? Colors.white : Colors.black;
+
     // Custom [TextTheme] is broken and leads to crashes when switching between themes.
-    // final TextTheme defaultTextTheme = const TextTheme().merge(TextTheme(
-    //   // TITLE MEDIUM
-    //   titleLarge: const TextStyle().merge(const TextStyle(
-    //     fontSize: 24,
-    //     fontWeight: FontWeight.w600,
-    //     letterSpacing: 0.15,
-    //     inherit: true,
-    //   )),
-    //   // TITLE MEDIUM
-    //   titleMedium: const TextStyle().merge(const TextStyle(
-    //     fontSize: 20,
-    //     fontWeight: FontWeight.w600,
-    //     letterSpacing: 0.15,
-    //     inherit: true,
-    //   )),
-    //   // TITLE SMALL
-    //   titleSmall: const TextStyle().merge(const TextStyle(
-    //     fontSize: 16,
-    //     fontWeight: FontWeight.w600,
-    //     letterSpacing: 0.15,
-    //     inherit: true,
-    //   )),
-    //   // BODY MEDIUM
-    //   bodyLarge: const TextStyle().merge(const TextStyle(
-    //     fontSize: 18,
-    //     fontWeight: FontWeight.w400,
-    //     letterSpacing: 0.15,
-    //     inherit: true,
-    //   )),
-    //   // BODY MEDIUM
-    //   bodyMedium: const TextStyle().merge(const TextStyle(
-    //     fontSize: 15,
-    //     fontWeight: FontWeight.w400,
-    //     letterSpacing: 0.15,
-    //     inherit: true,
-    //   )),
-    //   // BODY SMALL
-    //   bodySmall: const TextStyle().merge(const TextStyle(
-    //     fontSize: 12,
-    //     fontWeight: FontWeight.w400,
-    //     letterSpacing: 0.15,
-    //     inherit: true,
-    //   )),
-    // )).apply(
+    final TextTheme defaultTextTheme = Typography()
+        .englishLike
+        .copyWith(
+          // TITLE LARGE
+          titleLarge: const TextStyle().copyWith(
+            fontSize: 24,
+            fontWeight: FontWeight.w600,
+            letterSpacing: 0.15,
+          ),
+          // TITLE MEDIUM
+          titleMedium: const TextStyle().copyWith(
+            fontSize: 20,
+            fontWeight: FontWeight.w600,
+            letterSpacing: 0.15,
+          ),
+          // TITLE SMALL
+          titleSmall: const TextStyle().copyWith(
+            fontSize: 16,
+            fontWeight: FontWeight.w600,
+            letterSpacing: 0.15,
+          ),
+          // BODY LARGE
+          bodyLarge: const TextStyle().copyWith(
+            fontSize: 18,
+            fontWeight: FontWeight.w400,
+            letterSpacing: 0.15,
+          ),
+          // BODY MEDIUM
+          bodyMedium: const TextStyle().copyWith(
+            fontSize: 15,
+            fontWeight: FontWeight.w400,
+            letterSpacing: 0.15,
+          ),
+          // BODY SMALL
+          bodySmall: const TextStyle().copyWith(
+            fontSize: 12,
+            fontWeight: FontWeight.w400,
+            letterSpacing: 0.15,
+          ),
+        )
+        .apply(
+          bodyColor: textColor,
+          displayColor: textColor,
+          decorationColor: textColor,
+        );
+    // final TextTheme defaultTextTheme = const TextTheme().apply(
     //   bodyColor: textColor,
     //   displayColor: textColor,
     //   decorationColor: textColor,
     // );
-    final TextTheme defaultTextTheme = const TextTheme().apply(
-      bodyColor: textColor,
-      displayColor: textColor,
-      decorationColor: textColor,
-    );
 
     final ThemeData res = isDarkMode ? ThemeData.dark() : ThemeData.light();
 
@@ -316,8 +314,8 @@ class XTheme {
       toggleableActiveColor: toggleableActiveColor,
       // TEXT THEME ------------------------------------------------------------
       typography: typography,
-      textTheme: textTheme ?? defaultTextTheme,
-      primaryTextTheme: primaryTextTheme,
+      textTheme: defaultTextTheme.merge(textTheme),
+      primaryTextTheme: defaultTextTheme.merge(primaryTextTheme),
       // OTHER -----------------------------------------------------------------
       iconTheme: iconTheme ??
           const IconThemeData().copyWith(
@@ -359,7 +357,7 @@ class XTheme {
       drawerTheme: drawerTheme ??
           (backgroundAlt == null
               ? null
-              : DrawerThemeData(
+              : const DrawerThemeData().copyWith(
                   backgroundColor: backgroundAlt,
                 )),
       elevatedButtonTheme: elevatedButtonTheme,
@@ -376,22 +374,20 @@ class XTheme {
       switchTheme: switchTheme,
       tabBarTheme: tabBarTheme,
       textButtonTheme: textButtonTheme ??
-          TextButtonThemeData(
-            // If there are no background color nor alternate background color,
-            // the style is not changed;
-            // Otherwise, it is set to match the alternate background color (or the
-            // regular background color if there is none.
-            style: background == null && backgroundAlt == null
-                ? null
-                : const ButtonStyle().copyWith(
+          (background == null && backgroundAlt == null
+              ? null
+              : TextButtonThemeData(
+                  // If there are no background color nor alternate background color,
+                  // the style is not changed;
+                  // Otherwise, it is set to match the alternate background color (or the
+                  // regular background color if there is none.
+                  style: const ButtonStyle().copyWith(
                     backgroundColor: MaterialStateProperty.all<Color>(
                         backgroundAlt ?? background!),
                     foregroundColor:
                         MaterialStateProperty.all<Color>(textColor),
-                    textStyle: MaterialStateProperty.all<TextStyle?>(
-                        defaultTextTheme.bodyMedium),
                   ),
-          ),
+                )),
       textSelectionTheme: textSelectionTheme ??
           (secondary == null
               ? null

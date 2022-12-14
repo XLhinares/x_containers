@@ -26,6 +26,7 @@ class ExampleApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       home: const Home(),
+      theme: lightTheme,
       darkTheme: darkTheme,
       themeMode: ThemeMode.dark,
     );

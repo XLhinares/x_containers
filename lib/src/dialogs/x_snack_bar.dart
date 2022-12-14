@@ -8,28 +8,16 @@ class XSnackbar {
 
   // CONTENTS ------------------------------------------------------------------
 
-  /// The title of the snackbar.
-  ///
-  /// It should summarize the contents.
+  /// {@macro x_containers.docs.title}
   final Widget title;
 
-  /// A more extensive description of the snackbar.
+  /// {@macro x_containers.docs.content}
   final Widget? content;
 
-  /// An optional [TextStyle] to customize the title.
-  ///
-  /// It is applied to all [Text] children as default style.
-  final TextStyle? titleStyle;
-
-  /// An optional [TextStyle] to customize the contents.
-  ///
-  /// It is applied to all [Text] children as default style.
-  final TextStyle? contentStyle;
-
-  /// An optional widget to display to the right of the snackbar.
+  /// {@macro x_containers.docs.trailing}
   final Widget? trailing;
 
-  /// An optional [Widget] to display at the left of the snackbar.
+  /// {@macro x_containers.docs.leading}
   final Widget? leading;
 
   // PROPERTIES ---------------------------------------------------------------
@@ -39,7 +27,7 @@ class XSnackbar {
   /// Usually used when the screen is too wide.
   final double? maxWidth;
 
-  /// The background color of the Snackbar.
+  /// {@macro x_containers.docs.color}
   final Color? color;
 
   // BEHAVIOR ------------------------------------------------------------------
@@ -53,7 +41,6 @@ class XSnackbar {
   ///
   /// PARAMETERS:
   /// > - [title], [content], [leading] and [trailing] are widgets.
-  /// > - [titleStyle] and [contentStyle] are the default text style for [Text] widgets inside [title] and [content].
   /// > - [color] is the background color of the snackbar.
   /// > - [maxWidth] is the maximum allowed width of the Snackbar;
   /// > if null, the Snackbar takes the whole screen minus a small padding.
@@ -61,8 +48,6 @@ class XSnackbar {
   const XSnackbar({
     required this.title,
     this.content,
-    this.titleStyle,
-    this.contentStyle,
     this.leading,
     this.trailing,
     this.color,
@@ -86,8 +71,6 @@ class XSnackbar {
   factory XSnackbar.withUndo({
     required Widget title,
     Widget? content,
-    TextStyle? titleStyle,
-    TextStyle? contentStyle,
     Widget? leading,
     Color? color,
     Duration duration = const Duration(seconds: 4),
@@ -98,8 +81,6 @@ class XSnackbar {
       XSnackbar(
         title: title,
         content: content,
-        titleStyle: titleStyle,
-        contentStyle: contentStyle,
         leading: leading,
         trailing: TextButton(
           onPressed: onUndo,
@@ -132,10 +113,16 @@ class XSnackbar {
     double? maxWidth,
   }) =>
       XSnackbar(
-        title: Text(title),
-        content: content == null ? null : Text(content),
-        titleStyle: titleStyle,
-        contentStyle: contentStyle,
+        title: Text(
+          title,
+          style: titleStyle,
+        ),
+        content: content == null
+            ? null
+            : Text(
+                content,
+                style: contentStyle,
+              ),
         leading: leading,
         trailing: trailing,
         color: color,
@@ -170,10 +157,16 @@ class XSnackbar {
     void Function()? onUndo,
   }) =>
       XSnackbar(
-        title: Text(title),
-        content: content == null ? null : Text(content),
-        titleStyle: titleStyle,
-        contentStyle: contentStyle,
+        title: Text(
+          title,
+          style: titleStyle,
+        ),
+        content: content == null
+            ? null
+            : Text(
+                content,
+                style: contentStyle,
+              ),
         leading: leading,
         trailing: TextButton(
           onPressed: onUndo,
@@ -189,17 +182,15 @@ class XSnackbar {
   /// Displays the snackbar on the screen.
   void show(BuildContext context) => ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: ListTile(
+          content: XListTile(
             title: DefaultTextStyle(
-              style: titleStyle ??
-                  Theme.of(context).textTheme.titleMedium ??
-                  const TextStyle(),
+              style: const TextStyle()
+                  .merge(Theme.of(context).textTheme.titleMedium),
               child: title,
             ),
-            subtitle: DefaultTextStyle(
-              style: contentStyle ??
-                  Theme.of(context).textTheme.bodyMedium ??
-                  const TextStyle(),
+            content: DefaultTextStyle(
+              style: const TextStyle()
+                  .merge(Theme.of(context).textTheme.bodyMedium),
               child: content ?? const SizedBox(),
             ),
             leading: leading == null
