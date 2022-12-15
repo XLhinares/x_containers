@@ -107,6 +107,7 @@ class XCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return XInkContainer(
       margin: _margin,
+      padding: EdgeInsets.zero,
       borderRadius: _borderRadius,
       onTap: onTap,
       color: color ?? Theme.of(context).cardColor,

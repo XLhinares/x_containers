@@ -1,3 +1,7 @@
+## 1.2.1
+
+- `FIXED`: The [XCard] issue where the padding was stacked with [xTheme.padding].
+
 ## 1.2.0
 
 - `ADDED`: [XListTile] as a way to have a box-less reusable tile layout.
@@ -104,6 +108,7 @@ Keywords:
 
 - `ADDED`: When you add a new feature or dependency.
 - `IMPROVED`: When you make some feature or code better.
+- `FIXED`: When you make a correction to the code.
 - `CHANGED`: When you switch some code for different code (for instance, if we decided to radically change the way the movies are displayed).
 - `DELETED`: When you remove some feature or code.
 - `REFACTORED`: When you change file names or a linting rule.
