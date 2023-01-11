@@ -28,28 +28,19 @@ class XListTile extends StatelessWidget {
 
   /// An optional margin setting.
   ///
-  /// The default margin is computed from the density value and does NOT use the
-  /// [xTheme.padding] property.
+  /// The default value is that of [xTheme.padding].
   final EdgeInsetsGeometry? margin;
-  EdgeInsetsGeometry get _margin =>
-      margin ??
-      EdgeInsets.symmetric(
-        horizontal: _density,
-        vertical: _density / _densityRatio,
-      );
+  EdgeInsetsGeometry get _margin => margin ?? xTheme.padding;
 
-  /// A double managing the padding of the card.
-  ///
-  /// It has an impact on how close the children fit within the card.
-  final double? density;
-  double get _density => density ?? xTheme.paddingValue;
+  /// A double managing the horizontal padding between the contents of card.
+  final double? internalHorizontalPadding;
+  double get _internalHorizontalPadding =>
+      internalHorizontalPadding ?? xTheme.internalHorizontalPadding;
 
-  /// The ratio of horizontal density over vertical density.
-  ///
-  /// Increasing it will decrease the vertical padding if there is some.
-  /// Defaults to [xTheme.densityRatio].
-  final double? densityRatio;
-  double get _densityRatio => densityRatio ?? xTheme.densityRatio;
+  /// A double managing the horizontal padding between the contents of card.
+  final double? internalVerticalPadding;
+  double get _internalVerticalPadding =>
+      internalVerticalPadding ?? xTheme.internalVerticalPadding;
 
   // INTERACTIVITY -------------------------------------------------------------
 
@@ -67,8 +58,7 @@ class XListTile extends StatelessWidget {
   ///
   /// > - [title], [content], [leading] and [trailing] are widgets.
   /// > - [margin] works as usual, but by default it is computed from [density] and [densityRatio].
-  /// > - [density] is the space between the different elements (title, leading, contents, etc.).
-  /// > - [densityRatio] is the ratio of horizontal density over vertical density (for instance, a value of 2 will make the internal padding twice as large as it is tall).
+  /// > - [internalHorizontalPadding] and [internalVerticalPadding] manage the spacing between the contents of the tile.
   /// > - [onTap] and [onLongPress] are functions called when the card is tapped or pressed for a longer time.
   const XListTile({
     super.key,
@@ -77,13 +67,36 @@ class XListTile extends StatelessWidget {
     this.leading,
     this.trailing,
     this.margin,
-    this.density,
-    this.densityRatio,
+    this.internalHorizontalPadding,
+    this.internalVerticalPadding,
     this.onTap,
     this.onLongPress,
   });
 
   /// Returns an instance of [XCard] matching the given parameters.
+  ///
+  /// The internal horizontal and vertical padding match the horizontal and vertical values of the margin.
+  ///
+  /// PARAMETERS:
+  ///
+  /// > - [title], [content], [leading] and [trailing] are widgets.
+  /// > - [margin] works as usual, but by default it is computed from [density] and [densityRatio].
+  /// > - [onTap] and [onLongPress] are functions called when the card is tapped or pressed for a longer time.
+  XListTile.autoPad({
+    super.key,
+    required this.title,
+    this.content,
+    this.leading,
+    this.trailing,
+    required EdgeInsets this.margin,
+    this.onTap,
+    this.onLongPress,
+  })  : internalHorizontalPadding = margin.horizontal,
+        internalVerticalPadding = margin.vertical;
+
+  /// Returns an instance of [XListTile] matching the given parameters.
+  ///
+  /// The title and content are directly provided as [String] rather than [Widgets].
   ///
   /// PARAMETERS:
   ///
@@ -91,8 +104,7 @@ class XListTile extends StatelessWidget {
   /// > - [titleStyle] and [contentStyle] are the styles of [title] and [content].
   /// > - [leading] and [trailing] are widgets.
   /// > - [margin] works as usual, but by default it is computed from [density] and [densityRatio].
-  /// > - [density] is the space between the different elements (title, leading, contents, etc.).
-  /// > - [densityRatio] is the ratio of horizontal density over vertical density (for instance, a value of 2 will make the internal padding twice as large as it is tall).
+  /// > - [internalHorizontalPadding] and [internalVerticalPadding] manage the spacing between the contents of the tile.
   /// > - [onTap] and [onLongPress] are functions called when the card is tapped or pressed for a longer time.
   XListTile.text({
     super.key,
@@ -103,8 +115,8 @@ class XListTile extends StatelessWidget {
     this.leading,
     this.trailing,
     this.margin,
-    this.density,
-    this.densityRatio,
+    this.internalHorizontalPadding,
+    this.internalVerticalPadding,
     this.onTap,
     this.onLongPress,
   })  : title = Text(
@@ -133,7 +145,7 @@ class XListTile extends StatelessWidget {
             leading ?? const SizedBox(),
 
             // SPACING -----------------------------------------------------------
-            SizedBox(width: leading == null ? 0 : _density),
+            SizedBox(width: leading == null ? 0 : _internalHorizontalPadding),
 
             // MAIN BOX ----------------------------------------------------------
             Expanded(
@@ -149,7 +161,7 @@ class XListTile extends StatelessWidget {
                   ),
                   Visibility(
                     visible: content != null,
-                    child: SizedBox(height: _density / _densityRatio),
+                    child: SizedBox(height: _internalVerticalPadding),
                   ),
                   Visibility(
                     visible: content != null,
@@ -164,7 +176,7 @@ class XListTile extends StatelessWidget {
             ),
 
             // SPACING -----------------------------------------------------------
-            SizedBox(width: trailing == null ? 0 : _density),
+            SizedBox(width: trailing == null ? 0 : _internalHorizontalPadding),
 
             // TRAILING ----------------------------------------------------------
             trailing ?? const SizedBox(),

@@ -21,11 +21,11 @@ class XTheme {
   /// The default value of the padding used.
   double paddingValue = 10;
 
-  /// The ratio of horizontal density over vertical density.
-  ///
-  /// Default value: 4.
-  /// Increasing it will increase the vertical padding.
-  double densityRatio = 2;
+  /// The default value of the internal horizontal padding of [XListTile].
+  double internalHorizontalPadding = XLayout.paddingS;
+
+  /// The default value of the internal vertical padding of [XListTile].
+  double internalVerticalPadding = XLayout.paddingS;
 
   /// The default padding value for all XContainers.
   ///

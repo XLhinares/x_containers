@@ -9,7 +9,9 @@ class ExampleXCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return XCard.text(
-      densityRatio: 1,
+      internalHorizontalPadding: XLayout.paddingM,
+      internalVerticalPadding: XLayout.paddingXS,
+      padding: EdgeInsets.all(XLayout.paddingM),
       margin: EdgeInsets.all(XLayout.paddingS),
       leading: Icon(
         Icons.check_circle,
