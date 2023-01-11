@@ -39,29 +39,21 @@ class XCard extends StatelessWidget {
   ///
   /// The default padding is computed from the density value.
   final EdgeInsetsGeometry? padding;
-  EdgeInsetsGeometry get _padding =>
-      padding ??
-      EdgeInsets.symmetric(
-        horizontal: _density,
-        vertical: _density / _densityRatio,
-      );
+  EdgeInsetsGeometry get _padding => padding ?? xTheme.padding;
 
   /// {@macro x_containers.docs.margin}
   final EdgeInsetsGeometry? margin;
   EdgeInsetsGeometry get _margin => margin ?? xTheme.margin;
 
-  /// A double managing the padding between the elements of the card.
-  ///
-  /// It has an impact on how close the children fit within the card.
-  final double? density;
-  double get _density => density ?? xTheme.paddingValue;
+  /// A double managing the horizontal padding between the contents of card.
+  final double? internalHorizontalPadding;
+  double get _internalHorizontalPadding =>
+      internalHorizontalPadding ?? xTheme.internalHorizontalPadding;
 
-  /// The ratio of horizontal density over vertical density.
-  ///
-  /// Increasing it will decrease the vertical padding if there is some.
-  /// Defaults to [xTheme.densityRatio].
-  final double? densityRatio;
-  double get _densityRatio => densityRatio ?? xTheme.densityRatio;
+  /// A double managing the horizontal padding between the contents of card.
+  final double? internalVerticalPadding;
+  double get _internalVerticalPadding =>
+      internalVerticalPadding ?? xTheme.internalVerticalPadding;
 
   // INTERACTIVITY -------------------------------------------------------------
 
@@ -81,8 +73,7 @@ class XCard extends StatelessWidget {
   /// > - [color], [margin] and [padding] work as usual.
   /// > - [enableShadow] decides whether the card casts a shadow.
   /// > - [borderRadius] describes the intensity of the curvature of the corners.
-  /// > - [density] is the space between the different elements (title, leading, contents, etc.).
-  /// > - [densityRatio] is the ratio of horizontal density over vertical density (for instance, a value of 2 will make the internal padding twice as large as it is tall).
+  /// > - [internalHorizontalPadding] and [internalVerticalPadding] manage the spacing between the contents of the tile.
   /// > - [onTap] is a function called when the card is tapped.
   const XCard({
     super.key,
@@ -95,11 +86,38 @@ class XCard extends StatelessWidget {
     this.borderRadius,
     this.margin,
     this.padding,
-    this.density,
-    this.densityRatio,
+    this.internalHorizontalPadding,
+    this.internalVerticalPadding,
     this.onTap,
     this.onLongPress,
   });
+
+  /// Returns an instance of [XCard] matching the given parameters.
+  ///
+  /// The internal horizontal and vertical padding match the horizontal and vertical values of the margin.
+  ///
+  /// PARAMETERS:
+  ///
+  /// > - [title], [content], [leading] and [trailing] are widgets.
+  /// > - [color], [margin] and [padding] work as usual.
+  /// > - [enableShadow] decides whether the card casts a shadow.
+  /// > - [borderRadius] describes the intensity of the curvature of the corners.
+  /// > - [onTap] is a function called when the card is tapped.
+  XCard.autoPad({
+    super.key,
+    required this.title,
+    this.content,
+    this.leading,
+    this.trailing,
+    this.color,
+    this.enableShadow,
+    this.borderRadius,
+    this.margin,
+    required EdgeInsets this.padding,
+    this.onTap,
+    this.onLongPress,
+  })  : internalHorizontalPadding = padding.horizontal,
+        internalVerticalPadding = padding.vertical;
 
   /// Returns an instance of [XCard] matching the given parameters.
   ///
@@ -111,8 +129,7 @@ class XCard extends StatelessWidget {
   /// > - [color], [margin] and [padding] work as usual.
   /// > - [enableShadow] decides whether the card casts a shadow.
   /// > - [borderRadius] describes the intensity of the curvature of the corners.
-  /// > - [density] is the space between the different elements (title, leading, contents, etc.).
-  /// > - [densityRatio] is the ratio of horizontal density over vertical density (for instance, a value of 2 will make the internal padding twice as large as it is tall).
+  /// > - [internalHorizontalPadding] and [internalVerticalPadding] manage the spacing between the contents of the tile.
   /// > - [onTap] is a function called when the card is tapped.
   XCard.text({
     super.key,
@@ -127,8 +144,8 @@ class XCard extends StatelessWidget {
     this.borderRadius,
     this.margin,
     this.padding,
-    this.density,
-    this.densityRatio,
+    this.internalHorizontalPadding,
+    this.internalVerticalPadding,
     this.onTap,
     this.onLongPress,
   })  : title = Text(
@@ -159,8 +176,8 @@ class XCard extends StatelessWidget {
         leading: leading,
         trailing: trailing,
         margin: _padding,
-        density: density,
-        densityRatio: densityRatio,
+        internalHorizontalPadding: _internalHorizontalPadding,
+        internalVerticalPadding: _internalVerticalPadding,
       ),
     );
   }

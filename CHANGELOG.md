@@ -1,3 +1,9 @@
+## 1.2.3
+
+- :sparkles: Added an "autoPad" constructor to `XListTile` and `XCard` that matches the external and internal padding.
+- :recycle: Replaced `density` and `densityRatio` properties by `internalHorizontalPadding` and `internalVerticalPadding`.
+- :recycle: Changed the example to feature internal padding on `XCard`.
+
 ## 1.2.2
 
 - :construction_worker: Switched to emojis in the CHANGELOG (matching the gitmoji.dev guide).
