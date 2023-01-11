@@ -71,7 +71,7 @@ class XListTile extends StatelessWidget {
   /// > - [densityRatio] is the ratio of horizontal density over vertical density (for instance, a value of 2 will make the internal padding twice as large as it is tall).
   /// > - [onTap] and [onLongPress] are functions called when the card is tapped or pressed for a longer time.
   const XListTile({
-    Key? key,
+    super.key,
     required this.title,
     this.content,
     this.leading,
@@ -81,7 +81,42 @@ class XListTile extends StatelessWidget {
     this.densityRatio,
     this.onTap,
     this.onLongPress,
-  }) : super(key: key);
+  });
+
+  /// Returns an instance of [XCard] matching the given parameters.
+  ///
+  /// PARAMETERS:
+  ///
+  /// > - [title] and [content] are Strings.
+  /// > - [titleStyle] and [contentStyle] are the styles of [title] and [content].
+  /// > - [leading] and [trailing] are widgets.
+  /// > - [margin] works as usual, but by default it is computed from [density] and [densityRatio].
+  /// > - [density] is the space between the different elements (title, leading, contents, etc.).
+  /// > - [densityRatio] is the ratio of horizontal density over vertical density (for instance, a value of 2 will make the internal padding twice as large as it is tall).
+  /// > - [onTap] and [onLongPress] are functions called when the card is tapped or pressed for a longer time.
+  XListTile.text({
+    super.key,
+    required String title,
+    String? content,
+    TextStyle? titleStyle,
+    TextStyle? contentStyle,
+    this.leading,
+    this.trailing,
+    this.margin,
+    this.density,
+    this.densityRatio,
+    this.onTap,
+    this.onLongPress,
+  })  : title = Text(
+          title,
+          style: titleStyle,
+        ),
+        content = content == null
+            ? null
+            : Text(
+                content,
+                style: contentStyle,
+              );
 
   // BUILD =====================================================================
 
@@ -139,6 +174,6 @@ class XListTile extends StatelessWidget {
     );
   }
 
-  // WIDGETS ===================================================================
+// WIDGETS ===================================================================
 
 }

@@ -24,7 +24,7 @@ help:
 ## Checks whether the version number and the last changelog-ed version match.
 check-version:
 	@echo "\n>>> CHECKING VERSION:"
-	@echo "To implement"
+	@./scripts/check_version.sh
 
 ## Analyzes the contents of the lib folder.
 analyze:
