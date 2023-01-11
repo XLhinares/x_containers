@@ -85,7 +85,7 @@ class XCard extends StatelessWidget {
   /// > - [densityRatio] is the ratio of horizontal density over vertical density (for instance, a value of 2 will make the internal padding twice as large as it is tall).
   /// > - [onTap] is a function called when the card is tapped.
   const XCard({
-    Key? key,
+    super.key,
     required this.title,
     this.content,
     this.leading,
@@ -99,7 +99,48 @@ class XCard extends StatelessWidget {
     this.densityRatio,
     this.onTap,
     this.onLongPress,
-  }) : super(key: key);
+  });
+
+  /// Returns an instance of [XCard] matching the given parameters.
+  ///
+  /// PARAMETERS:
+  ///
+  /// > - [title], [content] are Strings.
+  /// > - [titleStyle] and [contentStyle] are the styles of [title] and [content].
+  /// > - [leading] and [trailing] are widgets.
+  /// > - [color], [margin] and [padding] work as usual.
+  /// > - [enableShadow] decides whether the card casts a shadow.
+  /// > - [borderRadius] describes the intensity of the curvature of the corners.
+  /// > - [density] is the space between the different elements (title, leading, contents, etc.).
+  /// > - [densityRatio] is the ratio of horizontal density over vertical density (for instance, a value of 2 will make the internal padding twice as large as it is tall).
+  /// > - [onTap] is a function called when the card is tapped.
+  XCard.text({
+    super.key,
+    required String title,
+    String? content,
+    TextStyle? titleStyle,
+    TextStyle? contentStyle,
+    this.leading,
+    this.trailing,
+    this.color,
+    this.enableShadow,
+    this.borderRadius,
+    this.margin,
+    this.padding,
+    this.density,
+    this.densityRatio,
+    this.onTap,
+    this.onLongPress,
+  })  : title = Text(
+          title,
+          style: titleStyle,
+        ),
+        content = content == null
+            ? null
+            : Text(
+                content,
+                style: titleStyle,
+              );
 
   // BUILD =====================================================================
 

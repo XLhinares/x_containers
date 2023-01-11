@@ -8,16 +8,15 @@ class ExampleXCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return XCard(
+    return XCard.text(
       densityRatio: 1,
       margin: EdgeInsets.all(XLayout.paddingS),
       leading: Icon(
         Icons.check_circle,
         size: XLayout.paddingL,
       ),
-      title: const Text("This is an [XCard]."),
-      content:
-          const Text("It works similarly to a [ListTile] within a [Card]."),
+      title: "This is an [XCard].",
+      content: "It works similarly to a [ListTile] within a [Card].",
     );
   }
 }
