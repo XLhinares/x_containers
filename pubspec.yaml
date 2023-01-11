@@ -1,6 +1,6 @@
 name: x_containers
 description: A Flutter package offering more adaptive and easy-to-use container widgets.
-version: 1.2.3
+version: 1.2.4
 homepage: https://github.com/XLhinares/x_containers
 
 environment:

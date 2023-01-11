@@ -21,8 +21,9 @@ class ExampleXDialog extends StatelessWidget {
         cancelText: "No",
         onValidate: () => toggleTheme(),
       ).show(context),
-      child: const Text(
+      child: Text(
         "Tap to display an [XDialog].",
+        style: Theme.of(context).textTheme.bodyMedium,
       ),
     );
   }

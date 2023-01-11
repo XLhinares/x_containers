@@ -121,6 +121,23 @@ All these are explained below.
 
 ---
 
+## List of breaking changes
+
+### 1.2.3
+
+- Replaced `density` and `densityRatio` properties by `internalHorizontalPadding` and `internalVerticalPadding` in `xTheme`, `XListTile` and `XCard`.
+
+### 1.2.0 
+
+- `XSnackbar` doesn't use the `titleStyle` and `contentStyle` properties which are handled by the text theme.
+
+### 1.1.0
+
+- In `XSnackbar`, the field `message` is renamed to `content` to match the naming of other classes.
+- In `XCard`, the field `subtitle` is renamed to `content` to match the naming of other classes.
+
+---
+
 ## **Additional information**
 
 This is my first package, feel free to check the github to add or ask any info you'd like, or give advice!

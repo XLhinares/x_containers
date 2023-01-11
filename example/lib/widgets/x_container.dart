@@ -13,7 +13,7 @@ class ExampleXContainer extends StatelessWidget {
       margin: EdgeInsets.all(XLayout.paddingS),
       child: const Text(
         "This is an [XContainer], the container I usually use.\n\n"
-        "By default it takes all the room it can, but you can wrap it in a min-sized [Row] or [Column] if you need to make it fit the size of its child.",
+        "By default it takes all the room it can, but you can wrap it in a [FittedBox] to shrink it to the size of its child.",
         textAlign: TextAlign.center,
       ),
     );

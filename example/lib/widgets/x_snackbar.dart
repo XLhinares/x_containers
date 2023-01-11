@@ -9,7 +9,7 @@ class ExampleXSnackbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      style: ButtonStyle(
+      style: const ButtonStyle().copyWith(
         backgroundColor:
             MaterialStateProperty.all(Theme.of(context).colorScheme.primary),
       ),
