@@ -65,7 +65,7 @@ class XContainer extends StatelessWidget {
 
   /// Returns an instance of [XContainer] matching the given parameters.
   const XContainer({
-    Key? key,
+    super.key,
     // color
     this.color,
     this.gradient,
@@ -83,7 +83,7 @@ class XContainer extends StatelessWidget {
     this.height,
     // child
     this.child,
-  }) : super(key: key);
+  });
 
   // BUILD =====================================================================
 

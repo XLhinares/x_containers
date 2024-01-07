@@ -1,7 +1,7 @@
 import "package:flutter/material.dart";
 
 /// An un-instantiable class containing the common documentation for the package.
-class Documentation {
+class XDocumentation {
   // CHILDREN ==================================================================
 
   // CHILD
@@ -166,7 +166,7 @@ class Documentation {
 
   // CONSTRUCTOR ===============================================================
 
-  Documentation._internal(
+  XDocumentation._internal(
     this.child,
     this.color,
     this.gradient,

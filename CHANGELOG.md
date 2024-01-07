@@ -1,3 +1,18 @@
+## 1.2.6
+
+- :boom: Removed all the "unused" parameters [xTheme.getTheme]. They can instead be set by running [.copyWith] on the result (see "breaking changes" in the readme). 
+- :bug: Changed the FontFeature element in the default appbar theme provided by the [xTheme].
+
+## 1.2.5
+
+- :bug: Removes deprecated theme parameters.
+
+## 1.2.4
+
+- :memo: Added a "breaking change" section to the README.md.
+- :speech_balloon: Changed text in the example.
+- :truck: Export `XDocumentation` class to provide access to documentation comment templates.
+
 ## 1.2.3
 
 - :sparkles: Added an "autoPad" constructor to `XListTile` and `XCard` that matches the external and internal padding.
@@ -38,7 +53,7 @@
 
 - :boom: In `XSnackbar`, the field `message` is renamed to `content` to match the naming of other classes.
 - :boom: In `XCard`, the field `subtitle` is renamed to `content` to match the naming of other classes.
-
+  
 - :recycle: Changed the example to match the breaking changes.
 
 ## 1.0.3-dev.1

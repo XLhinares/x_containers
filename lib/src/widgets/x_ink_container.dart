@@ -88,7 +88,7 @@ class XInkContainer extends StatelessWidget {
 
   /// Returns an instance of [XInkContainer] matching the given parameters.
   const XInkContainer({
-    Key? key,
+    super.key,
     this.child,
     this.color,
     this.gradient,
@@ -106,7 +106,7 @@ class XInkContainer extends StatelessWidget {
     this.onLongPress,
     this.enableSplash,
     this.splashColor,
-  }) : super(key: key);
+  });
 
   // BUILD =====================================================================
 

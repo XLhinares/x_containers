@@ -121,6 +121,27 @@ All these are explained below.
 
 ---
 
+## List of breaking changes
+
+### 1.2.6
+
+- Removed most parameters from `xTheme.getTheme`. The reason for this change is that the goal of the function is to provide a custom theme from an easy set of parameters. The removed parameters were just overrides for the preset; and they can easily be set by running `.copyWith` to the generated theme. 
+
+### 1.2.3
+
+- Replaced `density` and `densityRatio` properties by `internalHorizontalPadding` and `internalVerticalPadding` in `xTheme`, `XListTile` and `XCard`.
+
+### 1.2.0 
+
+- `XSnackbar` doesn't use the `titleStyle` and `contentStyle` properties which are handled by the text theme.
+
+### 1.1.0
+
+- In `XSnackbar`, the field `message` is renamed to `content` to match the naming of other classes.
+- In `XCard`, the field `subtitle` is renamed to `content` to match the naming of other classes.
+
+---
+
 ## **Additional information**
 
 This is my first package, feel free to check the github to add or ask any info you'd like, or give advice!
