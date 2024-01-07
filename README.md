@@ -123,6 +123,10 @@ All these are explained below.
 
 ## List of breaking changes
 
+### 1.2.6
+
+- Removed most parameters from `xTheme.getTheme`. The reason for this change is that the goal of the function is to provide a custom theme from an easy set of parameters. The removed parameters were just overrides for the preset; and they can easily be set by running `.copyWith` to the generated theme. 
+
 ### 1.2.3
 
 - Replaced `density` and `densityRatio` properties by `internalHorizontalPadding` and `internalVerticalPadding` in `xTheme`, `XListTile` and `XCard`.

@@ -1,3 +1,12 @@
+## 1.2.6
+
+- :boom: Removed all the "unused" parameters [xTheme.getTheme]. They can instead be set by running [.copyWith] on the result (see "breaking changes" in the readme). 
+- :bug: Changed the FontFeature element in the default appbar theme provided by the [xTheme].
+
+## 1.2.5
+
+- :bug: Removes deprecated theme parameters.
+
 ## 1.2.4
 
 - :memo: Added a "breaking change" section to the README.md.

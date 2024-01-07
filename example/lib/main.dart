@@ -38,7 +38,7 @@ class Home extends StatelessWidget {
   // CONSTRUCTOR ===============================================================
 
   /// Returns an instance of [Home] matching the given parameters.
-  const Home({Key? key}) : super(key: key);
+  const Home({super.key});
 
   // BUILD =====================================================================
 
