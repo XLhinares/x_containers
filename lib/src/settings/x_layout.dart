@@ -1,4 +1,3 @@
-// Flutter dependencies
 import "package:flutter/material.dart";
 
 /// A static class to store the main possible shapes.
@@ -16,6 +15,23 @@ class XLayout {
 
   /// Large padding value.
   static double paddingL = 40;
+
+  // EDGE INSETS ===============================================================
+
+  /// No edge insets on any sides.
+  static EdgeInsets get edgeInsetsNone => const EdgeInsets.all(0);
+
+  /// Extra-small edge insets on all sides.
+  static EdgeInsets get edgeInsetsAllXS => EdgeInsets.all(paddingXS);
+
+  /// Small edge insets on all sides.
+  static EdgeInsets get edgeInsetsAllS => EdgeInsets.all(paddingS);
+
+  /// Medium edge insets on all sides.
+  static EdgeInsets get edgeInsetsAllM => EdgeInsets.all(paddingM);
+
+  /// Large edge insets on all sides.
+  static EdgeInsets get edgeInsetsAllL => EdgeInsets.all(paddingL);
 
   // BORDER RADIUS =============================================================
 

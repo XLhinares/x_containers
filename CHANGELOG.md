@@ -1,7 +1,24 @@
+## 1.3.0
+
+- :sparkles: Added `XContainer.text` to quickly generate boxes with text.
+- :sparkles: Added `XButton.text` to quickly generate buttons with text.
+
+- :art: Added `textColor`, `textAccentColor` and `labelColor` to `XDialog`.
+- :art: Added `titleStyle`, `contentStyle` and `labelStyle` to `XDialog.text`.
+
+- :memo: Updated the example app to feature new changes.
+- :memo: Updated `README.md` to feature new changes.
+
+- :boom: Deprecated `XInkContainer` due to unclear name. Use `XInkContainer` instead.
+
+## 1.2.7
+
+- :adhesive_bandage: Fixed style of content of `XCard.text` 
+
 ## 1.2.6
 
-- :boom: Removed all the "unused" parameters [xTheme.getTheme]. They can instead be set by running [.copyWith] on the result (see "breaking changes" in the readme). 
-- :bug: Changed the FontFeature element in the default appbar theme provided by the [xTheme].
+- :boom: Removed all the "unused" parameters `xTheme.getTheme`. They can instead be set by running `.copyWith` on the result (see "breaking changes" in the readme). 
+- :bug: Changed the FontFeature element in the default appbar theme provided by the `xTheme`.
 
 ## 1.2.5
 

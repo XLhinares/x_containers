@@ -1,5 +1,4 @@
 import "dart:ui";
-
 import "package:flutter/material.dart";
 
 import "../../x_containers.dart";
@@ -30,6 +29,15 @@ class XDialog {
 
   /// {@macro x_containers.docs.color}
   final Color? color;
+
+  /// The color used for the text.
+  final Color? textColor;
+
+  /// The color used for the "validate" button
+  final Color? textAccentColor;
+
+  /// The text style used for the "validate" and "cancel" labels.
+  final TextStyle? labelStyle;
 
   /// The behavior to execute when the "cancel" button is pressed.
   ///
@@ -62,6 +70,9 @@ class XDialog {
     this.onCancel,
     this.onValidate,
     this.color,
+    this.textColor,
+    this.textAccentColor,
+    this.labelStyle,
     this.backgroundBlur = 1,
   });
 
@@ -75,21 +86,37 @@ class XDialog {
   factory XDialog.text({
     required String title,
     String? content,
+    TextStyle? titleStyle,
+    TextStyle? contentStyle,
+    TextStyle? labelStyle,
     String? cancelText = "Cancel",
     String? validateText = "Okay",
     void Function()? onCancel,
     void Function()? onValidate,
     Color? color,
+    Color? textColor,
+    Color? textAccentColor,
     double backgroundBlur = 1,
   }) =>
       XDialog(
-        title: Text(title),
-        content: content == null ? null : Text(content),
+        title: Text(
+          title,
+          style: titleStyle ?? TextStyle(color: textColor),
+        ),
+        content: content == null
+            ? null
+            : Text(
+                content,
+                style: contentStyle ?? TextStyle(color: textColor),
+              ),
         cancelText: cancelText,
         validateText: validateText,
         onCancel: onCancel,
         onValidate: onValidate,
         color: color,
+        textColor: textColor,
+        textAccentColor: textAccentColor,
+        labelStyle: labelStyle,
         backgroundBlur: backgroundBlur,
       );
 
@@ -110,13 +137,15 @@ class XDialog {
           shape:
               RoundedRectangleBorder(borderRadius: xTheme.dialogBorderRadius),
           title: DefaultTextStyle(
-            style: const TextStyle()
-                .merge(Theme.of(context).textTheme.titleMedium),
+            style: TextStyle(color: textColor).merge(
+              Theme.of(context).textTheme.titleMedium,
+            ),
             child: title,
           ),
           content: DefaultTextStyle(
-            style:
-                const TextStyle().merge(Theme.of(context).textTheme.bodyMedium),
+            style: TextStyle(color: textColor).merge(
+              Theme.of(context).textTheme.bodyMedium,
+            ),
             child: content ?? const SizedBox(),
           ),
           actions: <Widget>[
@@ -127,7 +156,13 @@ class XDialog {
                   Navigator.of(context).pop();
                   onCancel?.call();
                 },
-                child: Text(cancelText ?? "Cancel"),
+                child: Text(
+                  cancelText ?? "Cancel",
+                  style: (labelStyle ??
+                          Theme.of(context).textTheme.labelMedium ??
+                          const TextStyle())
+                      .apply(color: textColor),
+                ),
               ),
             ),
             Visibility(
@@ -137,7 +172,13 @@ class XDialog {
                   Navigator.of(context).pop();
                   onValidate?.call();
                 },
-                child: Text(validateText ?? "Okay"),
+                child: Text(
+                  validateText ?? "Okay",
+                  style: (labelStyle ??
+                          Theme.of(context).textTheme.labelMedium ??
+                          const TextStyle())
+                      .apply(color: textAccentColor),
+                ),
               ),
             ),
           ],

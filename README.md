@@ -38,7 +38,7 @@ All these are explained below.
 ||
 || **XContainers**
 | `XContainer` | A container-type widget with a shadow and some more customization than a regular container.
-| `XInkContainer` | A container-type widget with a shadow embedding a tappable InkWell for splash animations.
+| `XButton` | A mix between a button and an XContainer. 
 | `XCard` | A card-type widget meant to replace ListTiles inside Cards, it also fixes the issue of ListTile's leading and trailing properties not being leveled.
 | `XDialog` | A custom dialog object that can be displayed with its `show` method.
 | `XSnackbar` | A custom dialog object that can be displayed with its `show` method.
@@ -50,7 +50,7 @@ All these are explained below.
 
 ### **XContainers**
 
-> All the `XContainer` are similar to their non-X counterparts but I tried to bring the most used properties to top-level (so you don't have to code a `BoxDecoration` every time you want a shadow for instance).
+> All the `XContainer` are similar to their non-X counterparts but I tried to bring the most used properties to top-level (so you don't have to code a `BoxDecoration` every time you want a shadow, for instance).
 > 
 > ```dart
 > // Instantiating a [XContainer].
@@ -61,8 +61,8 @@ All these are explained below.
 >   child: Text("I have a shadow!"),
 > );
 > 
-> // Instantiating a [XInkContainer].
-> XInkContainer(
+> // Instantiating a [XButton].
+> XButton(
 >   padding: EdgeInset.all(10),
 >   onTap: () => print("I've been tapped on!"),
 >   child: Text("Tap me!"),
@@ -71,7 +71,7 @@ All these are explained below.
 
 ### **xTheme**
 
-> `xTheme` has two roles:
+> `xTheme` is a singleton class instance with two roles:
 > - Being the fallback theme for all XContainers so you can set it at the beginning of the app and not write a style object for each of your containers. 
 > - Generating a `ThemeData` without having to set every single field during instantiation (specific fields now fallback to more generic ones, especially for colors). 
 > 
@@ -79,7 +79,7 @@ All these are explained below.
 > // Setting the [XContainer] theme.
 > xTheme.set(
 >   margin: EdgeInsets.all(0),
->   padding: EdgeInsets.all(XLayout.paddingS),
+>   padding: XLayout.edgeInsetsAllS,
 > );
 > 
 > // Instantiating a theme preset for dark mode.
@@ -106,6 +106,10 @@ All these are explained below.
 > // Equivalent to [40].
 > XLayout.paddingL;
 > 
+> // Large edge insets on all sides.
+> // Equivalent to [EdgeInsets.all(paddingL)].
+> XLayout.edgeInsetsAllL;
+> 
 > // Large circular border radius.
 > // Equivalent to [BorderRadius.circular(paddingL)].
 > XLayout.brcL;
@@ -123,9 +127,13 @@ All these are explained below.
 
 ## List of breaking changes
 
+### 1.3.0
+
+- Deprecated [XInkContainer] due to unclear name. Use [XInkContainer] instead.
+
 ### 1.2.6
 
-- Removed most parameters from `xTheme.getTheme`. The reason for this change is that the goal of the function is to provide a custom theme from an easy set of parameters. The removed parameters were just overrides for the preset; and they can easily be set by running `.copyWith` to the generated theme. 
+- Removed most parameters from `xTheme.getTheme`. The reason for this change is that the goal of the function is to provide a custom theme from an easy set of parameters. The removed parameters were just overrides for the custom theme; and they can easily be set by running `.copyWith` on the generated theme. 
 
 ### 1.2.3
 

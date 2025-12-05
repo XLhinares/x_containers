@@ -1,0 +1,17 @@
+## Folders
+
+.dart_tool/
+.idea/
+build/
+linux/
+android/
+test/
+
+## Files
+
+.metadata
+analysis_options.yaml
+example.iml
+pubspec.lock
+pubspec.yaml
+README.md
