@@ -44,27 +44,28 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const List<Widget> examples = [
-      ExampleContainer(),
-      ExampleXContainer(),
-      ExampleXInkContainer(),
-      ExampleXCard(),
-      ExampleXDialog(),
-      ExampleXSnackbar(),
+    final List<Widget> examples = [
+      const ExampleContainer(),
+      XLayout.verticalM,
+      const ExampleXContainer(),
+      const ExampleXInkContainer(),
+      const ExampleXCard(),
+      XLayout.verticalL,
+      const ExampleXDialog(),
+      const ExampleXSnackbar(),
     ];
 
     return Scaffold(
       appBar: AppBar(
         title: const Text("XContainer: Examples"),
       ),
-      body: ListView.separated(
+      body: ListView.builder(
         padding: EdgeInsets.all(XLayout.paddingM),
         shrinkWrap: true,
         itemCount: examples.length,
         itemBuilder: (_, index) => Center(
           child: examples[index],
         ),
-        separatorBuilder: (_, __) => XLayout.verticalS,
       ),
     );
   }

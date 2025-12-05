@@ -156,14 +156,14 @@ class XCard extends StatelessWidget {
             ? null
             : Text(
                 content,
-                style: titleStyle,
+                style: contentStyle,
               );
 
   // BUILD =====================================================================
 
   @override
   Widget build(BuildContext context) {
-    return XInkContainer(
+    return XButton(
       margin: _margin,
       padding: EdgeInsets.zero,
       borderRadius: _borderRadius,

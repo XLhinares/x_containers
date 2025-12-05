@@ -11,8 +11,8 @@ class ExampleXCard extends StatelessWidget {
     return XCard.text(
       internalHorizontalPadding: XLayout.paddingM,
       internalVerticalPadding: XLayout.paddingXS,
-      padding: EdgeInsets.all(XLayout.paddingM),
-      margin: EdgeInsets.all(XLayout.paddingS),
+      padding: XLayout.edgeInsetsAllM,
+      margin: XLayout.edgeInsetsAllS,
       leading: Icon(
         Icons.check_circle,
         size: XLayout.paddingL,

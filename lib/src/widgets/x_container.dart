@@ -85,6 +85,55 @@ class XContainer extends StatelessWidget {
     this.child,
   });
 
+  /// Returns a [XContainer] whose child is replaced with a text widget.
+  ///
+  /// The goal of this widget is to improve code readibility for simple text boxes.
+  factory XContainer.text(
+    String text, {
+    TextStyle? textStyle,
+    TextAlign? textAlign,
+    Key? key,
+    // color
+    Color? color,
+    Gradient? gradient,
+    Color? shadowColor,
+    bool? enableShadow,
+    // shape
+    BorderRadius? borderRadius,
+    BoxBorder? borderDecoration,
+    Alignment? alignment,
+    // layout
+    EdgeInsets? padding,
+    EdgeInsets? margin,
+    BoxConstraints? constraints,
+    double? width,
+    double? height,
+  }) =>
+      XContainer(
+        key: key,
+        // color
+        color: color,
+        gradient: gradient,
+        shadowColor: shadowColor,
+        enableShadow: enableShadow,
+        // shape
+        borderRadius: borderRadius,
+        borderDecoration: borderDecoration,
+        alignment: alignment,
+        // layout
+        padding: padding,
+        margin: margin,
+        constraints: constraints,
+        width: width,
+        height: height,
+        // child
+        child: Text(
+          text,
+          style: textStyle,
+          textAlign: textAlign,
+        ),
+      );
+
   // BUILD =====================================================================
 
   @override

@@ -8,18 +8,14 @@ class ExampleXSnackbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-      style: const ButtonStyle().copyWith(
-        backgroundColor:
-            MaterialStateProperty.all(Theme.of(context).colorScheme.primary),
-      ),
-      onPressed: () => XSnackbar.text(
-        title: "Here it is :)",
-        content: "You can add some more text if you'd like.",
-      ).show(context),
-      child: Text(
+    return FittedBox(
+      child: XButton.text(
         "Tap to display an [XSnackbar].",
-        style: Theme.of(context).textTheme.bodyMedium,
+        margin: XLayout.edgeInsetsAllS,
+        onTap: () => XSnackbar.text(
+          title: "Here it is :)",
+          content: "You can add some more text if you'd like.",
+        ).show(context),
       ),
     );
   }

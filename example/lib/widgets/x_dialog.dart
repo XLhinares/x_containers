@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "package:get/get.dart";
 import "package:x_containers/x_containers.dart";
 
 import "../globals.dart";
@@ -10,20 +11,17 @@ class ExampleXDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-      style: const ButtonStyle().copyWith(
-        backgroundColor:
-            MaterialStateProperty.all(Theme.of(context).colorScheme.primary),
-      ),
-      onPressed: () => XDialog.text(
-        title: "Do you want to toggle dark mode on/off?",
-        validateText: "Yes",
-        cancelText: "No",
-        onValidate: () => toggleTheme(),
-      ).show(context),
-      child: Text(
+    return FittedBox(
+      child: XButton.text(
         "Tap to display an [XDialog].",
-        style: Theme.of(context).textTheme.bodyMedium,
+        margin: XLayout.edgeInsetsAllS,
+        onTap: () => XDialog.text(
+          title: "Do you want to toggle dark mode on/off?",
+          validateText: "Yes, please",
+          cancelText: "No, thanks",
+          textAccentColor: context.theme.colorScheme.secondary,
+          onValidate: () => toggleTheme(),
+        ).show(context),
       ),
     );
   }

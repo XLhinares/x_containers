@@ -2,6 +2,9 @@ import "package:flutter/material.dart";
 
 import "../../x_containers.dart";
 
+@Deprecated(
+    "Depecrated due to unclear name; use [XButton] instead. Will be removed in a future release")
+
 /// A tap-able custom container with ink properties.
 ///
 /// It has the same properties as a regular container with the exception the some
@@ -11,7 +14,18 @@ import "../../x_containers.dart";
 ///
 /// On top of the container, a ink behavior is implemented to allow tapping with
 /// splash animations.
-class XInkContainer extends StatelessWidget {
+typedef XInkContainer = XButton;
+
+/// A tap-able custom container with ink properties.
+///
+/// It has the same properties as a regular container with the exception the some
+/// decorations can be set directly without using a [BoxDecoration].
+/// However, these decorations will be overridden if the property [decoration]
+/// is provided.
+///
+/// On top of the container, a ink behavior is implemented to allow tapping with
+/// splash animations.
+class XButton extends StatelessWidget {
   // VARIABLES =================================================================
 
   // COLORS --------------------------------------------------------------------
@@ -86,8 +100,8 @@ class XInkContainer extends StatelessWidget {
 
   // CONSTRUCTOR ===============================================================
 
-  /// Returns an instance of [XInkContainer] matching the given parameters.
-  const XInkContainer({
+  /// Returns an instance of [XButton] matching the given parameters.
+  const XButton({
     super.key,
     this.child,
     this.color,
@@ -107,6 +121,64 @@ class XInkContainer extends StatelessWidget {
     this.enableSplash,
     this.splashColor,
   });
+
+  /// Returns a [XButton] whose child is replaced with a text widget.
+  ///
+  /// The goal of this widget is to improve code readibility for simple text boxes.
+  factory XButton.text(
+    String text, {
+    TextStyle? textStyle,
+    TextAlign? textAlign,
+    Key? key,
+    // color
+    Color? color,
+    Gradient? gradient,
+    Color? shadowColor,
+    bool? enableShadow,
+    // shape
+    BorderRadius? borderRadius,
+    BoxBorder? borderDecoration,
+    Alignment? alignment,
+    // layout
+    EdgeInsets? padding,
+    EdgeInsets? margin,
+    BoxConstraints? constraints,
+    double? width,
+    double? height,
+    void Function()? onTap,
+    void Function()? onLongPress,
+    bool? enableSplash,
+    Color? splashColor,
+  }) =>
+      XButton(
+        key: key,
+        // color
+        color: color,
+        gradient: gradient,
+        shadowColor: shadowColor,
+        enableShadow: enableShadow,
+        // shape
+        borderRadius: borderRadius,
+        borderDecoration: borderDecoration,
+        alignment: alignment,
+        // layout
+        padding: padding,
+        margin: margin,
+        constraints: constraints,
+        width: width,
+        height: height,
+        // interactions
+        onTap: onTap,
+        onLongPress: onLongPress,
+        enableSplash: enableSplash,
+        splashColor: splashColor,
+        // child
+        child: Text(
+          text,
+          style: textStyle,
+          textAlign: textAlign,
+        ),
+      );
 
   // BUILD =====================================================================
 

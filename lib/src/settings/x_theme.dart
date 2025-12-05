@@ -1,5 +1,3 @@
-import "dart:ui";
-
 import "package:flutter/material.dart";
 
 import "../../x_containers.dart";
@@ -187,12 +185,12 @@ class XTheme {
           ? ColorScheme.dark(
               secondary: secondary,
               primary: primary,
-              background: background,
+              surface: background,
             )
           : ColorScheme.light(
               secondary: secondary,
               primary: primary,
-              background: background,
+              surface: background,
             );
     } else {
       defaultColorScheme =
@@ -220,7 +218,6 @@ class XTheme {
       dividerColor: backgroundAlt,
       splashColor: splashColor,
       disabledColor: backgroundAlt,
-      dialogBackgroundColor: backgroundAlt,
       // TEXT THEME ------------------------------------------------------------
       typography: typography,
       textTheme: defaultTextTheme.merge(textTheme),
@@ -232,29 +229,30 @@ class XTheme {
           ),
       primaryIconTheme: primaryIconTheme,
       appBarTheme: const AppBarTheme().copyWith(
-              color: secondary,
-              titleTextStyle: const TextStyle().copyWith(
-                color: textColor,
-                fontSize: 24,
-                fontWeight: FontWeight.w600,
-                fontFeatures: [const FontFeature("smcp")],
-                letterSpacing: 0.25,
-              )),
+          backgroundColor: secondary,
+          titleTextStyle: const TextStyle().copyWith(
+            color: textColor,
+            fontSize: 24,
+            fontWeight: FontWeight.w600,
+            fontFeatures: [const FontFeature("smcp")],
+            letterSpacing: 0.25,
+          )),
       buttonTheme: (secondary == null
-              ? null
-              : const ButtonThemeData().copyWith(
-                  buttonColor: secondary,
-                )),
+          ? null
+          : const ButtonThemeData().copyWith(
+              buttonColor: secondary,
+            )),
       drawerTheme: (backgroundAlt == null
-              ? null
-              : const DrawerThemeData().copyWith(
-                  backgroundColor: backgroundAlt,
-                )),
+          ? null
+          : const DrawerThemeData().copyWith(
+              backgroundColor: backgroundAlt,
+            )),
       textSelectionTheme: (secondary == null
-              ? null
-              : const TextSelectionThemeData().copyWith(
-                  cursorColor: secondary,
-                )),
+          ? null
+          : const TextSelectionThemeData().copyWith(
+              cursorColor: secondary,
+            )),
+      dialogTheme: DialogThemeData(backgroundColor: backgroundAlt),
     );
   }
 }
